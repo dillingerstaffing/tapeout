@@ -22,6 +22,16 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "TAPEOUT",
+      "url": "https://dillingerstaffing.github.io/tapeout/",
+      "email": "shipthisgroup@gmail.com",
+      "description": "Curated sourcing of GPUs and compute parts with burn-in testing before anything ships. Quote-based, no listed prices, no stale inventory."
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
         {
@@ -270,9 +280,6 @@
     .log-entry strong { display: block; font-size: 14px; font-weight: 600; }
     .log-entry p { color: var(--muted); font-size: 13px; margin: 7px 0 0; }
     .lab-note { margin: 28px 0 0; color: #797b76; font-size: 12px; }
-    .pg-quiet { margin: 22px 0 0; color: #797b76; font-size: 13px; }
-    .pg-quiet a { color: #f2f0ea; text-decoration: underline; text-underline-offset: 3px; }
-    .pg-quiet a:hover { color: #ff6b19; }
 
     .quote-faq {
       display: grid;
@@ -538,7 +545,6 @@
             <p class="lab-note">No tapeout claimed. No fictional specification. Updates move here when the engineering does.</p>
           </div>
         </div>
-        <p class="pg-quiet"><a href="https://dillingerstaffing.github.io/proving-ground/" target="_blank" rel="noopener">See Proving Ground for various simulations <span aria-hidden="true">&#8599;</span></a></p>
       </div>
     </section>
 
@@ -591,7 +597,7 @@
             <label>Requirements<textarea name="requirements" aria-label="Requirements" required placeholder="Workload, platform, memory, condition, constraints, and budget range"></textarea></label>
             <label>When do you need it by?<input name="neededBy" aria-label="When do you need it by?" placeholder="Date or timeframe"></label>
             <div class="form-foot">
-              <p class="form-note">Email app opens the quote on your device. Gmail opens the same details in a browser compose window.</p>
+              <p class="form-note">Email app prepares the message on your device. Gmail instead places these details in a Google compose URL.</p>
               <div class="form-actions">
                 <button class="primary" type="submit">Open quote email
                   <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>

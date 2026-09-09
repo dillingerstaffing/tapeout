@@ -206,6 +206,21 @@
     .log-entry p { color: var(--muted); font-size: 13px; margin: 7px 0 0; }
     .lab-note { margin: 28px 0 0; color: #797b76; font-size: 12px; }
 
+    .quote-faq {
+      display: grid;
+      grid-template-columns: minmax(180px, .75fr) minmax(0, 1.25fr);
+      border-top: 1px solid var(--line);
+    }
+    .quote-faq h3 {
+      margin: 0;
+      padding: 25px 56px 25px 0;
+      border-right: 1px solid var(--line);
+      color: var(--signal-soft);
+      font: 500 11px/1.45 "IBM Plex Mono", monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .quote-faq p { margin: 0; padding: 25px 0 25px 56px; color: #b9bab4; font-size: 14px; }
     .quote-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: 0; border-top: 1px solid var(--line); }
     .quote-aside { padding: 54px 56px 64px 0; border-right: 1px solid var(--line); }
     .quote-aside h3 { font: 600 38px/1 "Barlow Condensed", sans-serif; text-transform: uppercase; }
@@ -254,6 +269,9 @@
       .offer:last-child { border-bottom: 0; }
       .offer h3 { margin-top: 42px; }
       .test-bay, .lab-grid, .quote-layout { grid-template-columns: 1fr; }
+      .quote-faq { grid-template-columns: 1fr; }
+      .quote-faq h3 { padding: 24px 0 10px; border-right: 0; }
+      .quote-faq p { padding: 0 0 24px; }
       .test-copy, .diagram, .quote-aside { border-right: 0; border-bottom: 1px solid var(--line); padding: 44px 0; }
       .test-visual, .log, form { padding: 44px 0; }
       .about { grid-template-columns: 1fr; gap: 18px; }
@@ -399,6 +417,10 @@
         <div class="section-head">
           <span class="section-no">03 / QUOTE</span>
           <div><h2>Send the requirement.</h2><p class="section-intro">Give us enough detail to source against the workload. The form opens a prepared email in your mail app.</p></div>
+        </div>
+        <div class="quote-faq" aria-labelledby="quote-faq-question">
+          <h3 id="quote-faq-question">What should a quote request include?</h3>
+          <p>Your workload or use case, target hardware (GPU model or compute parts), quantity, and timeline.</p>
         </div>
         <div class="quote-layout">
           <aside class="quote-aside">

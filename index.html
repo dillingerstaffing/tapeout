@@ -430,6 +430,29 @@
     .pg-link:hover { border-color: var(--signal); transform: translateY(-2px); }
     .pg-link:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
     .pg-note { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--muted); margin: 14px 0 0; }
+    /* Motion system: custom easing curves and a timing scale as brand
+       signature. No default easings anywhere on this page. */
+    :root {
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-pop: cubic-bezier(0.2, 0.9, 0.25, 1.12);
+      --t-fast: 140ms;
+      --t-base: 240ms;
+      --t-slow: 520ms;
+    }
+    /* Scroll reveals: rise and fade with per-element stagger. */
+    [data-reveal] {
+      opacity: 0; transform: translateY(26px);
+      transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
+      transition-delay: var(--rv-delay, 0ms);
+    }
+    [data-reveal].in { opacity: 1; transform: none; }
+    /* Press anticipation: actions depress 3% before they fire. */
+    a.primary, .pg-link, .contact-action { transition: transform 120ms ease-out, border-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out); }
+    a.primary:active, .pg-link:active, .contact-action:active { transform: scale(0.97); }
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] { opacity: 1; transform: none; transition: none; }
+      a.primary:active, .pg-link:active, .contact-action:active { transform: none; }
+    }
   </style>
 </head>
 <body>
@@ -695,6 +718,65 @@
         copyStatus.clearTimer = window.setTimeout(() => { copyStatus.textContent = ''; }, 1800);
       });
     });
+  </script>
+  <script>
+    /* Motion choreography: scroll reveals with stagger, telemetry scramble
+       on mono readouts. All transform/opacity only; fully inert under
+       prefers-reduced-motion. */
+    (function () {
+      "use strict";
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function stagger(sel, step) {
+        var els = document.querySelectorAll(sel);
+        els.forEach(function (el, i) {
+          el.setAttribute("data-reveal", "");
+          el.style.setProperty("--rv-delay", (i * step) + "ms");
+        });
+        return els;
+      }
+      stagger(".offer", 70);
+      stagger("#lab .section-head, .test-bay, .pg-proof, .lab-entry", 0);
+
+      var revealed = document.querySelectorAll("[data-reveal]");
+      if (!reduce && "IntersectionObserver" in window && revealed.length) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+          });
+        }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
+        revealed.forEach(function (el) { io.observe(el); });
+      } else {
+        revealed.forEach(function (el) { el.classList.add("in"); });
+      }
+
+      /* Telemetry scramble: mono readouts decrypt left to right. */
+      var GLYPHS = "!<>-_\\/[]{}+=*^?#";
+      function scramble(el) {
+        if (el.dataset.scrambled) return;
+        el.dataset.scrambled = "1";
+        var orig = el.textContent, n = orig.length, i = 0;
+        if (!n) return;
+        var timer = setInterval(function () {
+          i++;
+          var out = "";
+          for (var j = 0; j < n; j++) {
+            out += (j < i || orig[j] === " ") ? orig[j] : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+          }
+          el.textContent = out;
+          if (i >= n) { clearInterval(timer); el.textContent = orig; }
+        }, 26);
+      }
+      var scr = document.querySelectorAll(".scope-foot span, .test-list li span:last-child, .offer-tag");
+      if (!reduce && "IntersectionObserver" in window && scr.length) {
+        var io2 = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { scramble(en.target); io2.unobserve(en.target); }
+          });
+        }, { threshold: 0.4 });
+        scr.forEach(function (el) { io2.observe(el); });
+      }
+    })();
   </script>
 </body>
 </html>

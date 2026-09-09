@@ -590,7 +590,7 @@
       ].join('\n');
       const subject = 'Quote request: ' + data.get('need');
       const mailto = 'mailto:shipthisgroup@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      status.textContent = 'Opening your mail app with the quote details.';
+      status.textContent = 'Opening your mail app with the quote details. Nothing opened? Copy the address below.';
       window.location.assign(mailto);
     });
 

@@ -343,6 +343,8 @@
     input:focus, select:focus, textarea:focus { border-color: var(--signal); }
     .form-foot { display: flex; justify-content: space-between; align-items: center; gap: 22px; margin-top: 12px; }
     .form-note { color: #777a74; font-size: 11px; max-width: 360px; margin: 0; }
+    .form-actions { display: flex; align-items: center; justify-content: flex-end; gap: 16px; flex-wrap: wrap; }
+    .form-gmail { white-space: nowrap; }
     .form-status { min-height: 22px; margin: 14px 0 0; color: var(--signal-soft); font: 400 11px/1.4 "IBM Plex Mono", monospace; }
 
     .about { display: grid; grid-template-columns: 180px 1fr; gap: 40px; padding: 70px 0; }
@@ -396,6 +398,7 @@
       .telemetry div:nth-child(3) { display: none; }
       .field-row { grid-template-columns: 1fr; gap: 0; }
       .form-foot { align-items: stretch; flex-direction: column; }
+      .form-actions { align-items: stretch; flex-direction: column; }
       .primary { justify-content: center; width: 100%; }
       .scope { padding: 16px; }
       .scope svg { height: 190px; }
@@ -411,55 +414,6 @@
         transition-delay: 0s !important;
         scroll-behavior: auto !important;
       }
-    }
-
-    /* The Proving Ground: one quiet line, honestly framed as sketches. TAPEOUT
-       voice: signal orange, IBM Plex Mono labels, terse rows. */
-    .pg-proof { margin-top: 44px; border-top: 1px solid var(--line); padding-top: 26px; }
-    .pg-proof h4 { font-size: 20px; margin: 10px 0 8px; letter-spacing: -0.01em; }
-    .pg-proof > p { color: var(--muted); font-size: 14px; max-width: 62ch; margin: 0 0 18px; }
-    .pg-links { display: flex; flex-wrap: wrap; gap: 10px; }
-    .pg-link {
-      display: inline-flex; align-items: center; gap: 12px; padding: 13px 18px;
-      border: 1px solid #3a3d38; border-radius: 10px; background: var(--panel);
-      color: var(--ink); text-decoration: none;
-      font-family: "IBM Plex Mono", monospace; font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em;
-      transition: border-color 0.18s ease, transform 0.18s ease;
-    }
-    .pg-link span:last-child { color: var(--signal); }
-    .pg-link:hover { border-color: var(--signal); transform: translateY(-2px); }
-    .pg-link:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
-    .pg-note { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--muted); margin: 14px 0 0; }
-    /* The Proving Ground: one quiet line, honestly framed as sketches. */
-    .pg-quiet {
-      margin-top: 40px; border-top: 1px solid var(--line); padding-top: 22px;
-      font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--muted);
-      max-width: 68ch; line-height: 1.7;
-    }
-    .pg-quiet a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-    .pg-quiet a:hover { color: var(--signal); }
-    /* Motion system: custom easing curves and a timing scale as brand
-       signature. No default easings anywhere on this page. */
-    :root {
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-pop: cubic-bezier(0.2, 0.9, 0.25, 1.12);
-      --t-fast: 140ms;
-      --t-base: 240ms;
-      --t-slow: 520ms;
-    }
-    /* Scroll reveals: rise and fade with per-element stagger. */
-    [data-reveal] {
-      opacity: 0; transform: translateY(26px);
-      transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
-      transition-delay: var(--rv-delay, 0ms);
-    }
-    [data-reveal].in { opacity: 1; transform: none; }
-    /* Press anticipation: actions depress 3% before they fire. */
-    a.primary, .pg-link, .contact-action { transition: transform 120ms ease-out, border-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out); }
-    a.primary:active, .pg-link:active, .contact-action:active { transform: scale(0.97); }
-    @media (prefers-reduced-motion: reduce) {
-      [data-reveal] { opacity: 1; transform: none; transition: none; }
-      a.primary:active, .pg-link:active, .contact-action:active { transform: none; }
     }
   </style>
 </head>
@@ -540,14 +494,6 @@
             </div>
           </div>
         </div>
-
-        <p class="pg-quiet">
-          Simplified browser demos of the same ideas:
-          <a href="https://dillingerstaffing.github.io/proving-ground/#bench=burn-in-chamber" target="_blank" rel="noopener">The Burn-In Chamber <span aria-hidden="true">&#8599;</span></a>
-          and
-          <a href="https://dillingerstaffing.github.io/proving-ground/#bench=memory-bin-lab" target="_blank" rel="noopener">The Memory Bin Lab <span aria-hidden="true">&#8599;</span></a>.
-          Sketches, not test equipment.
-        </p>
       </div>
     </section>
 
@@ -643,10 +589,13 @@
             </div>
             <label>Requirements<textarea name="requirements" aria-label="Requirements" required placeholder="Workload, platform, memory, condition, constraints, and budget range"></textarea></label>
             <div class="form-foot">
-              <p class="form-note">Nothing is transmitted by this page. Your mail app opens with a prepared message for you to review and send.</p>
-              <button class="primary" type="submit">Open quote email
-                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
-              </button>
+              <p class="form-note">Email app prepares the message on your device. Gmail instead places these details in a Google compose URL.</p>
+              <div class="form-actions">
+                <button class="primary" type="submit">Open quote email
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+                </button>
+                <button class="contact-action form-gmail" type="button" data-gmail-quote>Open in Gmail instead</button>
+              </div>
             </div>
             <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
             <noscript><p class="form-status">Email composition needs JavaScript. <a href="mailto:shipthisgroup@gmail.com">Email shipthisgroup@gmail.com</a>.</p></noscript>
@@ -677,27 +626,43 @@
   <script>
     const form = document.getElementById('quote-form');
     const status = document.getElementById('form-status');
+    const gmailQuoteButton = form.querySelector('[data-gmail-quote]');
+
+    function getQuoteContent() {
+      const data = new FormData(form);
+      return {
+        subject: 'Quote request: ' + data.get('need'),
+        body: [
+          'TAPEOUT QUOTE REQUEST',
+          '',
+          'Name: ' + data.get('name'),
+          'Work email: ' + data.get('email'),
+          'Organization: ' + (data.get('organization') || 'Not provided'),
+          'Need: ' + data.get('need'),
+          'Quantity: ' + (data.get('quantity') || 'Not provided'),
+          'Needed by: ' + (data.get('neededBy') || 'Not provided'),
+          '',
+          'Requirements:',
+          data.get('requirements')
+        ].join('\n')
+      };
+    }
+
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       if (!form.reportValidity()) return;
-      const data = new FormData(form);
-      const body = [
-        'TAPEOUT QUOTE REQUEST',
-        '',
-        'Name: ' + data.get('name'),
-        'Work email: ' + data.get('email'),
-        'Organization: ' + (data.get('organization') || 'Not provided'),
-        'Need: ' + data.get('need'),
-        'Quantity: ' + (data.get('quantity') || 'Not provided'),
-        'Needed by: ' + (data.get('neededBy') || 'Not provided'),
-        '',
-        'Requirements:',
-        data.get('requirements')
-      ].join('\n');
-      const subject = 'Quote request: ' + data.get('need');
-      const mailto = 'mailto:shipthisgroup@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      status.textContent = 'Opening your mail app with the quote details. Nothing opened? Copy the address from the contact options.';
+      const quote = getQuoteContent();
+      const mailto = 'mailto:shipthisgroup@gmail.com?subject=' + encodeURIComponent(quote.subject) + '&body=' + encodeURIComponent(quote.body);
+      status.textContent = 'Opening your mail app with the quote details. Nothing opened? Use Gmail instead.';
       window.location.assign(mailto);
+    });
+
+    gmailQuoteButton.addEventListener('click', () => {
+      if (!form.reportValidity()) return;
+      const quote = getQuoteContent();
+      const gmail = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent('shipthisgroup@gmail.com') + '&su=' + encodeURIComponent(quote.subject) + '&body=' + encodeURIComponent(quote.body);
+      status.textContent = 'Opening the prepared quote in Gmail.';
+      window.open(gmail, '_blank', 'noopener,noreferrer');
     });
 
     document.querySelectorAll('[data-copy-email]').forEach((button) => {
@@ -723,65 +688,6 @@
         copyStatus.clearTimer = window.setTimeout(() => { copyStatus.textContent = ''; }, 1800);
       });
     });
-  </script>
-  <script>
-    /* Motion choreography: scroll reveals with stagger, telemetry scramble
-       on mono readouts. All transform/opacity only; fully inert under
-       prefers-reduced-motion. */
-    (function () {
-      "use strict";
-      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      function stagger(sel, step) {
-        var els = document.querySelectorAll(sel);
-        els.forEach(function (el, i) {
-          el.setAttribute("data-reveal", "");
-          el.style.setProperty("--rv-delay", (i * step) + "ms");
-        });
-        return els;
-      }
-      stagger(".offer", 70);
-      stagger("#lab .section-head, .test-bay, .pg-proof, .lab-entry", 0);
-
-      var revealed = document.querySelectorAll("[data-reveal]");
-      if (!reduce && "IntersectionObserver" in window && revealed.length) {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) {
-            if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
-          });
-        }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
-        revealed.forEach(function (el) { io.observe(el); });
-      } else {
-        revealed.forEach(function (el) { el.classList.add("in"); });
-      }
-
-      /* Telemetry scramble: mono readouts decrypt left to right. */
-      var GLYPHS = "!<>-_\\/[]{}+=*^?#";
-      function scramble(el) {
-        if (el.dataset.scrambled) return;
-        el.dataset.scrambled = "1";
-        var orig = el.textContent, n = orig.length, i = 0;
-        if (!n) return;
-        var timer = setInterval(function () {
-          i++;
-          var out = "";
-          for (var j = 0; j < n; j++) {
-            out += (j < i || orig[j] === " ") ? orig[j] : GLYPHS[(Math.random() * GLYPHS.length) | 0];
-          }
-          el.textContent = out;
-          if (i >= n) { clearInterval(timer); el.textContent = orig; }
-        }, 26);
-      }
-      var scr = document.querySelectorAll(".scope-foot span, .test-list li span:last-child, .offer-tag");
-      if (!reduce && "IntersectionObserver" in window && scr.length) {
-        var io2 = new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) {
-            if (en.isIntersecting) { scramble(en.target); io2.unobserve(en.target); }
-          });
-        }, { threshold: 0.4 });
-        scr.forEach(function (el) { io2.observe(el); });
-      }
-    })();
   </script>
 </body>
 </html>

@@ -583,11 +583,9 @@
                 <select name="need" aria-label="Need" required><option value="">Select one</option><option>GPUs or accelerators</option><option>Complete compute build</option><option>Compute parts</option><option>Other sourcing request</option></select>
               </label>
             </div>
-            <div class="field-row">
-              <label>Quantity<input name="quantity" aria-label="Quantity" inputmode="numeric" placeholder="Example: 4"></label>
-              <label>Needed by<input name="neededBy" aria-label="Needed by" placeholder="Date or timeframe"></label>
-            </div>
+            <label>Quantity<input name="quantity" aria-label="Quantity" inputmode="numeric" placeholder="Example: 4"></label>
             <label>Requirements<textarea name="requirements" aria-label="Requirements" required placeholder="Workload, platform, memory, condition, constraints, and budget range"></textarea></label>
+            <label>When do you need it by?<input name="neededBy" aria-label="When do you need it by?" placeholder="Date or timeframe"></label>
             <div class="form-foot">
               <p class="form-note">Email app prepares the message on your device. Gmail instead places these details in a Google compose URL.</p>
               <div class="form-actions">
@@ -630,6 +628,7 @@
 
     function getQuoteContent() {
       const data = new FormData(form);
+      const neededBy = String(data.get('neededBy') || '').trim();
       return {
         subject: 'Quote request: ' + data.get('need'),
         body: [
@@ -640,7 +639,7 @@
           'Organization: ' + (data.get('organization') || 'Not provided'),
           'Need: ' + data.get('need'),
           'Quantity: ' + (data.get('quantity') || 'Not provided'),
-          'Needed by: ' + (data.get('neededBy') || 'Not provided'),
+          ...(neededBy ? ['When do you need it by? ' + neededBy] : []),
           '',
           'Requirements:',
           data.get('requirements')

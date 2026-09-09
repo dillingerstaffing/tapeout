@@ -413,7 +413,7 @@
       }
     }
 
-    /* The Proving Ground: the qualification benches are public. TAPEOUT
+    /* The Proving Ground: one quiet line, honestly framed as sketches. TAPEOUT
        voice: signal orange, IBM Plex Mono labels, terse rows. */
     .pg-proof { margin-top: 44px; border-top: 1px solid var(--line); padding-top: 26px; }
     .pg-proof h4 { font-size: 20px; margin: 10px 0 8px; letter-spacing: -0.01em; }
@@ -430,6 +430,14 @@
     .pg-link:hover { border-color: var(--signal); transform: translateY(-2px); }
     .pg-link:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
     .pg-note { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--muted); margin: 14px 0 0; }
+    /* The Proving Ground: one quiet line, honestly framed as sketches. */
+    .pg-quiet {
+      margin-top: 40px; border-top: 1px solid var(--line); padding-top: 22px;
+      font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--muted);
+      max-width: 68ch; line-height: 1.7;
+    }
+    .pg-quiet a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+    .pg-quiet a:hover { color: var(--signal); }
     /* Motion system: custom easing curves and a timing scale as brand
        signature. No default easings anywhere on this page. */
     :root {
@@ -533,16 +541,13 @@
           </div>
         </div>
 
-        <div class="pg-proof">
-          <p class="eyebrow">Run it yourself</p>
-          <h4>The qualification benches are public.</h4>
-          <p>Call SHIP or RMA on three graphics cards with hidden faults. Bin memory modules grade A or B on a real DRAM command scheduler. The same instruments, running in your browser.</p>
-          <div class="pg-links">
-            <a class="pg-link" href="https://dillingerstaffing.github.io/proving-ground/#bench=burn-in-chamber" target="_blank" rel="noopener"><span>THE BURN-IN CHAMBER</span><span aria-hidden="true">↗</span></a>
-            <a class="pg-link" href="https://dillingerstaffing.github.io/proving-ground/#bench=memory-bin-lab" target="_blank" rel="noopener"><span>THE MEMORY BIN LAB</span><span aria-hidden="true">↗</span></a>
-          </div>
-          <p class="pg-note">Each link opens the exact bench, running, in a new tab.</p>
-        </div>
+        <p class="pg-quiet">
+          Simplified browser demos of the same ideas:
+          <a href="https://dillingerstaffing.github.io/proving-ground/#bench=burn-in-chamber" target="_blank" rel="noopener">The Burn-In Chamber <span aria-hidden="true">&#8599;</span></a>
+          and
+          <a href="https://dillingerstaffing.github.io/proving-ground/#bench=memory-bin-lab" target="_blank" rel="noopener">The Memory Bin Lab <span aria-hidden="true">&#8599;</span></a>.
+          Sketches, not test equipment.
+        </p>
       </div>
     </section>
 

@@ -343,6 +343,15 @@
     footer { padding: 30px 0 36px; display: flex; justify-content: space-between; gap: 24px; color: #737570; font: 400 10px/1.5 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; }
     footer a { color: #a4a69f; }
 
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid #fff !important;
+      outline-offset: 3px;
+    }
+
     @media (max-width: 900px) {
       .shell { width: min(100% - 36px, 720px); }
       .rail nav a:not(:last-child) { display: none; }

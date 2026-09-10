@@ -320,7 +320,7 @@
     .log h3 { font: 600 31px/1 "Barlow Condensed", sans-serif; text-transform: uppercase; margin-bottom: 30px; }
     .log-entry { padding: 20px 0; border-top: 1px solid var(--line); }
     .log-entry:first-of-type { border-top-color: var(--signal); }
-    .log-entry time { display: block; color: var(--signal-soft); font: 400 10px/1 "IBM Plex Mono", monospace; margin-bottom: 9px; }
+    .log-entry .log-status { display: block; color: var(--signal-soft); font: 400 10px/1 "IBM Plex Mono", monospace; margin-bottom: 9px; }
     .log-entry strong { display: block; font-size: 14px; font-weight: 600; }
     .log-entry p { color: var(--muted); font-size: 13px; margin: 7px 0 0; }
     .lab-note { margin: 28px 0 0; color: #797b76; font-size: 12px; }
@@ -594,9 +594,9 @@
           </div>
           <div class="log">
             <h3>Progress log</h3>
-            <article class="log-entry"><time datetime="2026-09">CURRENT</time><strong>Supply and validation workflow</strong><p>Defining intake, test, result recording, and quote procedures for small-batch compute hardware.</p></article>
-            <article class="log-entry"><time datetime="2026-09">CURRENT</time><strong>Architecture study</strong><p>Mapping the interfaces, telemetry, power, thermal, and debug requirements of a practical validation platform.</p></article>
-            <article class="log-entry"><time datetime="2026-09">NEXT</time><strong>Bench prototype</strong><p>Validate the control and measurement path with off-the-shelf components before committing to custom silicon or a custom board.</p></article>
+            <article class="log-entry"><span class="log-status">CURRENT</span><strong>Supply and validation workflow</strong><p>Defining intake, test, result recording, and quote procedures for small-batch compute hardware.</p></article>
+            <article class="log-entry"><span class="log-status">CURRENT</span><strong>Architecture study</strong><p>Mapping the interfaces, telemetry, power, thermal, and debug requirements of a practical validation platform.</p></article>
+            <article class="log-entry"><span class="log-status">NEXT</span><strong>Bench prototype</strong><p>Validate the control and measurement path with off-the-shelf components before committing to custom silicon or a custom board.</p></article>
             <p class="lab-note">No tapeout claimed. No fictional specification. Updates move here when the engineering does.</p>
           </div>
         </div>

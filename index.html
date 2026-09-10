@@ -10,7 +10,6 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090a0a'/%3E%3Crect x='19' y='19' width='26' height='26' rx='4' fill='none' stroke='%23ff6b19' stroke-width='4'/%3E%3Cpath d='M25 12v7m14-7v7M25 45v7m14-7v7M12 25h7m-7 14h7m26-14h7m-7 14h7' stroke='%23ff6b19' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#ff6b19">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <title>TAPEOUT | GPUs and Compute Parts, Burn-In Tested</title>
   <meta name="description" content="TAPEOUT sources curated GPUs and compute parts, burn-in tested before anything ships. Request a quote with your workload and required specs.">
@@ -99,7 +98,7 @@
       --ok: #b7d7a4;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; background: var(--void); -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; background: #090a0a; -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
       -webkit-tap-highlight-color: transparent;
@@ -136,6 +135,15 @@
     .shell { width: min(1240px, calc(100% - 64px)); margin: 0 auto; }
     .mono { font-family: "IBM Plex Mono", monospace; }
     .condensed { font-family: "Barlow Condensed", sans-serif; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes headline-reveal {
+      from { transform: translateY(112%); }
+      to { transform: none; }
+    }
 
     .rail {
       min-height: 62px;
@@ -182,6 +190,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
     .eyebrow {
       margin: 0 0 28px;
@@ -194,10 +203,17 @@
     h1 {
       max-width: 640px;
       margin-bottom: 30px;
-      font: 600 clamp(58px, 6.6vw, 102px)/.92 "Barlow Condensed", sans-serif;
+      font: 600 clamp(52px, 4.4vw, 69px)/.92 "Barlow Condensed", sans-serif;
       letter-spacing: -.035em;
       text-transform: uppercase;
     }
+    .headline-line { display: block; overflow: hidden; white-space: nowrap; }
+    .headline-line > span {
+      display: block;
+      animation: headline-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .headline-line:nth-child(2) > span { animation-delay: 0.12s; }
+    .headline-line:nth-child(3) > span { animation-delay: 0.24s; }
     .hero .lede { max-width: 520px; color: #c1c1bb; font-size: 17px; }
     .hero-actions { display: flex; align-items: center; gap: 22px; margin-top: 28px; flex-wrap: wrap; }
     .primary {
@@ -407,7 +423,7 @@
       .rail nav a:not(:last-child) { display: none; }
       .hero { display: block; }
       .hero-copy { padding: 82px 24px 66px; }
-      h1 { font-size: clamp(58px, 15.8vw, 82px); line-height: .95; }
+      h1 { font-size: clamp(38px, 10.8vw, 56px); line-height: .95; }
       .hero-art { min-height: 480px; }
       .hero-art::after { background: linear-gradient(0deg, rgba(9,10,10,.72), transparent 50%); }
       .telemetry { right: 18px; left: 18px; bottom: 18px; grid-template-columns: repeat(3, 1fr); }
@@ -447,10 +463,10 @@
     }
     @media (prefers-reduced-motion: reduce) {
       html, html:focus-within { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: .01ms !important;
+      * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
         transition-delay: 0s !important;
         scroll-behavior: auto !important;
       }
@@ -472,7 +488,11 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow">GPUs / accelerators / compute parts</p>
-        <h1 id="hero-title">Compute parts, sourced with discipline.</h1>
+        <h1 id="hero-title" aria-label="Compute parts, sourced with discipline.">
+          <span class="headline-line" aria-hidden="true"><span>Compute</span></span>
+          <span class="headline-line" aria-hidden="true"><span>parts, sourced</span></span>
+          <span class="headline-line" aria-hidden="true"><span>with discipline.</span></span>
+        </h1>
         <p class="lede">Curated hardware for AI labs, builders, and researchers. Every unit we supply passes burn-in testing before it ships.</p>
         <div class="hero-actions">
           <a class="primary" href="#quote">Request a quote

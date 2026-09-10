@@ -205,6 +205,19 @@
     .primary:hover, .primary:focus-visible { background: #ff8140; }
     .primary svg { width: 18px; height: 18px; }
     .text-link { color: #c4c5bf; text-underline-offset: 5px; font-size: 13px; }
+    .section-action-row { display: flex; justify-content: flex-end; padding: 24px 0 32px; }
+    .section-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #a9aaa4;
+      font: 500 11px/1.2 "IBM Plex Mono", monospace;
+      letter-spacing: .04em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .section-action:hover, .section-action:focus-visible { color: var(--ink); }
+    .section-action svg { width: 16px; height: 16px; }
     .hero-art { position: relative; min-height: 720px; overflow: hidden; }
     .hero-art img { width: 100%; height: 100%; object-fit: cover; object-position: 54% center; filter: contrast(1.04) saturate(.92); }
     .hero-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--void), transparent 22%), linear-gradient(0deg, rgba(9,10,10,.46), transparent 42%); }
@@ -504,6 +517,11 @@
             </div>
           </div>
         </div>
+        <div class="section-action-row">
+          <a class="section-action" href="#quote">Request a quote
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -544,6 +562,11 @@
             <article class="log-entry"><time datetime="2026-09">NEXT</time><strong>Bench prototype</strong><p>Validate the control and measurement path with off-the-shelf components before committing to custom silicon or a custom board.</p></article>
             <p class="lab-note">No tapeout claimed. No fictional specification. Updates move here when the engineering does.</p>
           </div>
+        </div>
+        <div class="section-action-row">
+          <a class="section-action" href="#quote">Request a quote
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+          </a>
         </div>
       </div>
     </section>

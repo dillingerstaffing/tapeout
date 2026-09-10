@@ -762,10 +762,10 @@
   <script>
     const currentBuildVersion = document.querySelector('meta[name="build-version"]')?.content;
     let versionCheckInFlight = false;
-    let reloadRequestedForVersion = null;
+    let buildReloadRequested = false;
 
     document.addEventListener('visibilitychange', async () => {
-      if (document.visibilityState !== 'visible' || versionCheckInFlight || reloadRequestedForVersion) return;
+      if (document.visibilityState !== 'visible' || versionCheckInFlight || buildReloadRequested) return;
       versionCheckInFlight = true;
 
       try {
@@ -775,8 +775,10 @@
         const fetchedDocument = new DOMParser().parseFromString(await response.text(), 'text/html');
         const fetchedBuildVersion = fetchedDocument.querySelector('meta[name="build-version"]')?.content;
 
-        if (fetchedBuildVersion && fetchedBuildVersion !== currentBuildVersion && !reloadRequestedForVersion) {
-          reloadRequestedForVersion = fetchedBuildVersion;
+        const lastReloadedBuildVersion = history.state?.tapeoutReloadedBuildVersion;
+        if (fetchedBuildVersion && fetchedBuildVersion !== currentBuildVersion && fetchedBuildVersion !== lastReloadedBuildVersion) {
+          buildReloadRequested = true;
+          history.replaceState({ ...history.state, tapeoutReloadedBuildVersion: fetchedBuildVersion }, '');
           window.location.reload();
         }
       } catch (error) {

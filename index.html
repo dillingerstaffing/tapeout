@@ -8,6 +8,9 @@
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090a0a'/%3E%3Crect x='19' y='19' width='26' height='26' rx='4' fill='none' stroke='%23ff6b19' stroke-width='4'/%3E%3Cpath d='M25 12v7m14-7v7M25 45v7m14-7v7M12 25h7m-7 14h7m26-14h7m-7 14h7' stroke='%23ff6b19' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff6b19">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <title>TAPEOUT | GPUs and Compute Parts, Burn-In Tested</title>
   <meta name="description" content="TAPEOUT sources curated GPUs and compute parts, burn-in tested before anything ships. Request a quote with your workload and required specs.">
   <link rel="canonical" href="https://dillingerstaffing.github.io/tapeout/">
@@ -735,5 +738,10 @@
       });
     });
   </script>
+  <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
 </body>
 </html>

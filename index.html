@@ -584,18 +584,18 @@
           </aside>
           <form id="quote-form">
             <div class="field-row">
-              <label>Name<input name="name" aria-label="Name" autocomplete="name" required></label>
-              <label>Work email<input name="email" aria-label="Work email" type="email" autocomplete="email" required></label>
+              <label>Name<input name="name" autocomplete="name" required></label>
+              <label>Work email<input name="email" type="email" autocomplete="email" required></label>
             </div>
             <div class="field-row">
-              <label>Organization<input name="organization" aria-label="Organization" autocomplete="organization"></label>
+              <label>Organization<input name="organization" autocomplete="organization"></label>
               <label>Need
-                <select name="need" aria-label="Need" required><option value="">Select one</option><option>GPUs or accelerators</option><option>Complete compute build</option><option>Compute parts</option><option>Other sourcing request</option></select>
+                <select name="need" required><option value="">Select one</option><option>GPUs or accelerators</option><option>Complete compute build</option><option>Compute parts</option><option>Other sourcing request</option></select>
               </label>
             </div>
-            <label>Quantity<input name="quantity" aria-label="Quantity" inputmode="numeric" placeholder="Example: 4"></label>
-            <label>Requirements<textarea name="requirements" aria-label="Requirements" required placeholder="Workload, platform, memory, condition, constraints, and budget range"></textarea></label>
-            <label>When do you need it by?<input name="neededBy" aria-label="When do you need it by?" placeholder="Date or timeframe"></label>
+            <label>Quantity<input name="quantity" inputmode="numeric" placeholder="Example: 4"></label>
+            <label>Requirements<textarea name="requirements" required placeholder="Workload, platform, memory, condition, constraints, and budget range"></textarea></label>
+            <label>When do you need it by?<input name="neededBy" placeholder="Date or timeframe"></label>
             <div class="form-foot">
               <p class="form-note">Email app prepares the message on your device. Gmail instead places these details in a Google compose URL.</p>
               <div class="form-actions">

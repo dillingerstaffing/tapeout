@@ -1,5 +1,5 @@
 // VERSION: bump this string on every deploy that changes cached assets, so clients install a fresh service worker.
-const VERSION = 'v20260911-0955';
+const VERSION = 'v20260911-1725';
 const CACHE = 'tapeout-' + VERSION;
 const OFFLINE_URL = 'index.html';
 

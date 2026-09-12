@@ -21,7 +21,8 @@ p{color:var(--muted);font-size:1rem;line-height:1.7;max-width:34rem;margin-botto
 a.back{display:inline-block;font-family:"IBM Plex Mono",monospace;color:var(--void);background:var(--signal);text-decoration:none;font-weight:500;padding:.9rem 1.75rem;border-radius:2px}
 a.back:hover{background:var(--ink)}
 footer{margin-top:4rem;font-size:.8rem;color:var(--muted);border-top:1px solid var(--line);padding-top:1.5rem;width:100%}
-footer a{color:var(--muted)}
+footer a,footer button{color:var(--muted)}
+.contact-choices button{background:none;border:0;font:inherit;text-decoration:underline;cursor:pointer}
 </style>
 </head>
 <body>
@@ -29,6 +30,9 @@ footer a{color:var(--muted)}
 <h1>404</h1>
 <p>No such page. Nothing ships from here.</p>
 <a class="back" href="https://dillingerstaffing.github.io/tapeout/">Back to TAPEOUT</a>
-<footer>Need a quote? <a href="mailto:shipthisgroup@gmail.com?subject=Quote%20request">shipthisgroup@gmail.com</a></footer>
+<footer>Need a quote? <span class="contact-choices" role="group" aria-label="Contact options"><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com" target="_blank" rel="noopener noreferrer">Open in Gmail</a> / <a href="mailto:shipthisgroup@gmail.com?subject=Quote%20request">Email app</a> / <button type="button" id="copyAddr">Copy address</button><span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span></span></footer>
+<script>
+(function(){var b=document.getElementById('copyAddr'),s=document.getElementById('copyStatus');if(!b)return;function say(m){s.textContent=m;}function legacy(){var t=document.createElement('textarea');t.value='shipthisgroup@gmail.com';document.body.appendChild(t);t.select();try{document.execCommand('copy');say('Copied');}catch(e){say('Copy failed');}document.body.removeChild(t);}b.addEventListener('click',function(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText('shipthisgroup@gmail.com').then(function(){say('Copied');},legacy);}else{legacy();}});})();
+</script>
 </body>
 </html>

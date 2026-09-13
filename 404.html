@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#090a0a">
+<meta name="build-version" content="v20260913-tapeout-1755">
 <meta name="robots" content="noindex">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TAPEOUT">
@@ -47,6 +48,55 @@ footer a,footer button{color:var(--muted)}
 <footer>Need a quote? <span class="contact-choices" role="group" aria-label="Contact options"><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com&amp;su=Quote%20request" target="_blank" rel="noopener noreferrer">Open in Gmail</a> / <a href="mailto:shipthisgroup@gmail.com?subject=Quote%20request">Email app</a> / <button type="button" id="copyAddr">Copy address</button><span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span></span></footer>
 <script>
 (function(){var b=document.getElementById('copyAddr'),s=document.getElementById('copyStatus');if(!b)return;function say(m){s.textContent=m;}function legacy(){var t=document.createElement('textarea');t.value='shipthisgroup@gmail.com';document.body.appendChild(t);t.select();try{document.execCommand('copy');say('Copied');}catch(e){say('Copy failed');}document.body.removeChild(t);}b.addEventListener('click',function(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText('shipthisgroup@gmail.com').then(function(){say('Copied');},legacy);}else{legacy();}});})();
+</script>
+<script>
+  (function () {
+    var currentBuildVersion = document.querySelector('meta[name="build-version"]') && document.querySelector('meta[name="build-version"]').content;
+    var checkInFlight = false;
+    var reloadRequested = false;
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState !== 'visible' || checkInFlight || reloadRequested) return;
+      checkInFlight = true;
+
+      fetch('', { cache: 'no-store' }).then(function (response) {
+        return response.text();
+      }).then(function (html) {
+        var fetchedDocument = new DOMParser().parseFromString(html, 'text/html');
+        var meta = fetchedDocument.querySelector('meta[name="build-version"]');
+        var fetchedBuildVersion = meta && meta.content;
+
+        var lastReloaded = window.history.state && window.history.state.tapeoutReloadedBuildVersion;
+        if (fetchedBuildVersion && fetchedBuildVersion !== currentBuildVersion && fetchedBuildVersion !== lastReloaded) {
+          reloadRequested = true;
+          var state = window.history.state || {};
+          state.tapeoutReloadedBuildVersion = fetchedBuildVersion;
+          window.history.replaceState(state, '');
+          window.location.reload();
+        }
+      }).catch(function () {
+        // A failed background check should not interrupt the page.
+      }).then(function () {
+        checkInFlight = false;
+      });
+    });
+  })();
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(function (reg) {
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'visible') reg.update();
+      });
+
+      var reloading = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (reloading) return;
+        reloading = true;
+        window.location.reload();
+      });
+    });
+  }
 </script>
 </body>
 </html>

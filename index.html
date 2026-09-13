@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#090a0a">
   <meta name="color-scheme" content="dark">
-  <meta name="build-version" content="v20260912-tapeout-1725">
+  <meta name="build-version" content="v20260913-tapeout-0415">
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090a0a'/%3E%3Crect x='19' y='19' width='26' height='26' rx='4' fill='none' stroke='%23ff6b19' stroke-width='4'/%3E%3Cpath d='M25 12v7m14-7v7M25 45v7m14-7v7M12 25h7m-7 14h7m26-14h7m-7 14h7' stroke='%23ff6b19' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -562,6 +562,19 @@
             </div>
           </div>
         </div>
+        <div class="scope" role="group" aria-label="Result record specimen" style="margin-top: 28px;">
+          <div class="scope-top"><span>Result record</span><span>Specimen / the record format</span></div>
+          <ul class="test-list" style="margin-top: 22px;">
+            <li><span>Part</span><span>make and model</span></li>
+            <li><span>Part identifier</span><span>serial, recorded</span></li>
+            <li><span>Test plan</span><span>matched to the component and its use</span></li>
+            <li><span>Duration under load</span><span>elapsed time, recorded</span></li>
+            <li><span>Peak temperature</span><span>observed max, recorded</span></li>
+            <li><span>Errors observed</span><span>count, recorded</span></li>
+            <li><span>Outcome</span><span>ship / reject</span></li>
+          </ul>
+          <div class="scope-foot" style="margin-top: 18px;"><span>One record per part</span><span>Sent with the shipment</span></div>
+        </div>
         <div class="section-action-row">
           <a class="section-action" href="#quote">Request a quote
             <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
@@ -605,6 +618,7 @@
             <article class="log-entry"><span class="log-status">CURRENT</span><strong>Supply and validation workflow</strong><p>Defining intake, test, result recording, and quote procedures for small-batch compute hardware.</p></article>
             <article class="log-entry"><span class="log-status">CURRENT</span><strong>Architecture study</strong><p>Mapping the interfaces, telemetry, power, thermal, and debug requirements of a practical validation platform.</p></article>
             <article class="log-entry"><span class="log-status">NEXT</span><strong>Bench prototype</strong><p>Validate the control and measurement path with off-the-shelf components before committing to custom silicon or a custom board.</p></article>
+            <article class="log-entry"><span class="log-status">2026-09-13</span><strong>Burn-in gate documented</strong><p>The burn-in test plan and the per-part result-record format are now published on this page.</p></article>
             <p class="lab-note">No tapeout claimed. No fictional specification. Updates move here when the engineering does.</p>
           </div>
         </div>
@@ -637,6 +651,14 @@
         <div class="quote-faq" role="group" aria-labelledby="pricing-faq-question">
           <h3 id="pricing-faq-question">Why aren't prices listed on the site?</h3>
           <p>Pricing moves too fast to list honestly. Every quote is built from current sourcing for your exact list; nothing is priced from stale inventory.</p>
+        </div>
+        <div class="quote-faq" role="group" aria-labelledby="included-faq-question">
+          <h3 id="included-faq-question">What does the quote include?</h3>
+          <p>Sourcing, burn-in testing before anything ships, and the result record for every part. Testing is included, never an optional extra.</p>
+        </div>
+        <div class="quote-faq" role="group" aria-labelledby="confirm-faq-question">
+          <h3 id="confirm-faq-question">How do I know you received my request?</h3>
+          <p>You send the request from your own mail app, so the sent copy is your receipt. We reply to every request with a sourced quote.</p>
         </div>
         <div class="quote-layout">
           <aside class="quote-aside">

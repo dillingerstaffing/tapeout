@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#090a0a">
-<meta name="build-version" content="v20260913-tapeout-1755">
+<meta name="build-version" content="v20260913-tapeout-1855">
 <meta name="robots" content="noindex">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TAPEOUT">
@@ -84,7 +84,7 @@ footer a,footer button{color:var(--muted)}
 </script>
 <script>
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').then(function (reg) {
+    navigator.serviceWorker.register('/tapeout/sw.js').then(function (reg) {
       document.addEventListener('visibilitychange', function () {
         if (document.visibilityState === 'visible') reg.update();
       });

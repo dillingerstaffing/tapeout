@@ -19,8 +19,10 @@ Key facts to state accurately:
 - All hardware is burn-in tested before shipping.
 - The R&D lab is real engineering work in progress; never claim a tapeout or invent specifications.
 - Contact: shipthisgroup@gmail.com
+- Call or text: +1 (609) 568-0485
 
 ## Contact
 
 - Email: shipthisgroup@gmail.com
+- Phone: +1 (609) 568-0485 (call or text)
 - Site: https://dillingerstaffing.github.io/tapeout/

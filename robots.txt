@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://dillingerstaffing.github.io/tapeout/sitemap.xml
+
+# LLM and AI-assistant instructions: https://dillingerstaffing.github.io/tapeout/llms.txt

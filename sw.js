@@ -1,5 +1,5 @@
 // VERSION: bump this string on every deploy that changes cached assets, so clients install a fresh service worker.
-const VERSION = 'v20260915-tapeout-0725';
+const VERSION = 'v20260915-tapeout-1025';
 const CACHE = 'tapeout-' + VERSION;
 const OFFLINE_URL = 'index.html';
 
@@ -19,10 +19,22 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== location.origin) return;
-  
+
+  // Version-check probes carry a unique query string. Answer them straight
+  // from the network and never cache them, so the page's build-version
+  // comparison can never read a stale entry (and the cache does not fill
+  // with one-off probe responses).
+  if (url.searchParams.has('vcheck')) {
+    event.respondWith(fetch(request));
+    return;
+  }
+
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request)
+      // cache:'reload' bypasses the browser HTTP cache, so a navigation
+      // always paints the latest published page (Pages serves HTML with
+      // max-age=600, which would otherwise flash stale content).
+      fetch(request, { cache: 'reload' })
         .then((response) => {
           const copy = response.clone();
           caches.open(CACHE).then((cache) => cache.put(request, copy));

@@ -820,12 +820,14 @@
     let versionCheckInFlight = false;
     let buildReloadRequested = false;
 
-    document.addEventListener('visibilitychange', async () => {
+    async function checkTapeoutBuild() {
       if (document.visibilityState !== 'visible' || versionCheckInFlight || buildReloadRequested) return;
       versionCheckInFlight = true;
 
       try {
-        const response = await fetch('', { cache: 'no-store' });
+        // The vcheck query defeats the service worker's cache-first path for
+        // this probe: a unique URL can never match a stale cache entry.
+        const response = await fetch('?vcheck=' + Date.now(), { cache: 'no-store' });
         if (!response.ok) return;
 
         const fetchedDocument = new DOMParser().parseFromString(await response.text(), 'text/html');
@@ -842,7 +844,12 @@
       } finally {
         versionCheckInFlight = false;
       }
-    });
+    }
+
+    document.addEventListener('visibilitychange', checkTapeoutBuild);
+    // A fresh launch (the home-screen app) may never fire visibilitychange,
+    // so check once shortly after load as well.
+    setTimeout(checkTapeoutBuild, 2500);
   </script>
   <script>
 if ('serviceWorker' in navigator) {

@@ -5,7 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#090a0a">
   <meta name="color-scheme" content="dark">
-  <meta name="build-version" content="v20260916-tapeout-1408">
+  <script>
+    (() => {
+      // Theme: notebook is the default; a stored visitor choice wins.
+      // Runs before the stylesheet is parsed so the first paint is already
+      // the right theme (no flash of the wrong one).
+      let t = 'notebook';
+      try {
+        const stored = localStorage.getItem('emi-site-theme');
+        if (stored === 'classic' || stored === 'notebook') t = stored;
+      } catch (_) {}
+      document.documentElement.dataset.theme = t;
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', t === 'classic' ? '#090a0a' : '#ece6d5');
+      const scheme = document.querySelector('meta[name="color-scheme"]');
+      if (scheme) scheme.setAttribute('content', t === 'classic' ? 'dark' : 'light');
+    })();
+  </script>
+  <meta name="build-version" content="v20260916-tapeout-1945">
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090a0a'/%3E%3Crect x='19' y='19' width='26' height='26' rx='4' fill='none' stroke='%23ff6b19' stroke-width='4'/%3E%3Cpath d='M25 12v7m14-7v7M25 45v7m14-7v7M12 25h7m-7 14h7m26-14h7m-7 14h7' stroke='%23ff6b19' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -121,7 +138,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #f2f0ea;
@@ -132,6 +149,7 @@
       --signal: #ff6b19;
       --signal-soft: #f0b692;
       --ok: #b7d7a4;
+      --acid: #ff6b19; /* sanguine accent alias; notebook redefines it */
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; background: #090a0a; -webkit-text-size-adjust: 100%;  overflow-x: clip; }
@@ -468,7 +486,7 @@
 
     @media (max-width: 900px) {
       .shell { width: min(100% - 36px, 720px); }
-      .rail nav a:not(:last-child) { display: none; }
+      .rail nav a:not(:last-of-type) { display: none; }
       .hero { display: block; }
       .hero-copy { padding: 82px 24px 66px; }
       h1 { font-size: clamp(38px, 10.8vw, 56px); line-height: .95; }
@@ -519,6 +537,152 @@
         scroll-behavior: auto !important;
       }
     }
+
+    /* ============ Dual theme: notebook (default) and classic ============
+       :root carries the classic dark design, untouched. Everything below
+       re-voices the same markup in the notebook design language: flat warm
+       paper, committed ink, one sanguine accent reserved for affordances and
+       margin annotations, serif article type, hairline rules. The signal and
+       ok tokens are redefined to the sanguine so every component that keys
+       off them follows. No glow, no texture, and none of the notebook
+       cliches: no stains, tape, aging, handwriting fonts, ruled lines, or
+       page curls. */
+    [data-theme="notebook"] {
+      --ink: #241f17;
+      --muted: #5e5648;
+      --dim: #8d8474;
+      --bg: #ece6d5;
+      --panel: #e3dac2;
+      --panel-2: #d9cfae;
+      --line: #c9bfa4;
+      --acid: #8c3f22;
+      --acid-soft: #a5542f;
+      --paper: #f4efe0;
+      --black: #241f17;
+      --signal: #8c3f22;
+      --signal-soft: #a5542f;
+      --ok: #8c3f22;
+    }
+    html[data-theme="notebook"] { background: #ece6d5; }
+    [data-theme="notebook"] body {
+      background: var(--bg);
+      font-family: "Newsreader", Georgia, serif;
+    }
+    [data-theme="notebook"] ::selection { background: var(--acid); color: var(--paper); }
+
+    /* Tonal timing on theme switches (both themes). */
+    body, .rail, .rail nav a, .theme-toggle, .primary, .contact-action,
+    .offer, .scope, .block-diagram, .telemetry div, .log-entry,
+    input, select, textarea, label, .section-action, .quote-faq p {
+      transition: background-color .45s ease, color .45s ease, border-color .45s ease;
+    }
+
+    /* Skip link: ink plate on paper. */
+    [data-theme="notebook"] .skip-link { background: var(--ink); color: var(--paper); }
+
+    /* Header mark: committed ink, no halo. */
+    [data-theme="notebook"] .pulse { box-shadow: none; }
+    [data-theme="notebook"] .rail nav a { color: #5e5648; }
+
+    /* Hero: the art fades into paper instead of the void. */
+    [data-theme="notebook"] .hero-art::after {
+      background: linear-gradient(90deg, var(--bg), transparent 22%), linear-gradient(0deg, rgba(236,230,213,.5), transparent 42%);
+    }
+    [data-theme="notebook"] .hero .lede { color: var(--muted); }
+    [data-theme="notebook"] .text-link { color: var(--muted); }
+    [data-theme="notebook"] .telemetry { background: rgba(36,31,23,.28); }
+    [data-theme="notebook"] .telemetry div { background: rgba(244,239,224,.92); }
+
+    /* Buttons: ink plates on paper; sanguine only on hover. */
+    [data-theme="notebook"] .primary { background: var(--ink); color: var(--paper); }
+    [data-theme="notebook"] .primary:hover, [data-theme="notebook"] .primary:focus-visible { background: var(--acid); color: #fdfaf1; }
+    [data-theme="notebook"] .section-action { color: var(--muted); }
+
+    /* Sections and offers: hairlines on paper. */
+    [data-theme="notebook"] .offer p { color: var(--muted); }
+
+    /* Burn-in evidence figures stay on ink plates, keyed in paper ink. */
+    [data-theme="notebook"] .scope { border-color: #b3a685; background: #242019; }
+    [data-theme="notebook"] .scope #grid path { stroke: #4a4436; }
+    [data-theme="notebook"] .scope svg path[stroke="#535650"] { stroke: #8d8474; }
+    [data-theme="notebook"] .scope-top, [data-theme="notebook"] .scope-foot { color: #97907f; }
+    [data-theme="notebook"] .test-list li { border-top-color: var(--line); }
+    [data-theme="notebook"] .scope .test-list li { color: #ece6d5; border-top-color: #4a4436; }
+    [data-theme="notebook"] .scope .test-list li span:last-child { color: #d98a5b; }
+
+    /* Open lab: block diagram on an ink plate, log in the margins. */
+    [data-theme="notebook"] .block-diagram { background: #242019; border-color: #b3a685; }
+    [data-theme="notebook"] .lab-note { color: var(--dim); }
+
+    /* Quote: paper controls with hairline borders. */
+    [data-theme="notebook"] .quote-faq p { color: var(--ink); }
+    [data-theme="notebook"] label { color: var(--muted); }
+    [data-theme="notebook"] input, [data-theme="notebook"] select, [data-theme="notebook"] textarea {
+      border-color: #a89a76; background: var(--paper); color: var(--ink);
+    }
+    [data-theme="notebook"] input::placeholder, [data-theme="notebook"] textarea::placeholder { color: #8d8474; }
+    [data-theme="notebook"] .form-note { color: var(--dim); }
+
+    /* Contact chooser: quiet underlines, sanguine on hover. */
+    [data-theme="notebook"] .contact-action { border-bottom-color: #a89a76; color: var(--muted); }
+    [data-theme="notebook"] .contact-action:hover, [data-theme="notebook"] .contact-action:focus-visible { color: var(--ink); }
+
+    /* About and footer. */
+    [data-theme="notebook"] .about p { color: var(--muted); }
+    [data-theme="notebook"] footer { color: var(--dim); }
+    [data-theme="notebook"] footer a { color: var(--muted); }
+    [data-theme="notebook"] .elsewhere { color: var(--dim); }
+    [data-theme="notebook"] .elsewhere a { color: var(--dim); }
+
+    /* Focus rings key off the sanguine in notebook. */
+    [data-theme="notebook"] a:focus-visible,
+    [data-theme="notebook"] button:focus-visible,
+    [data-theme="notebook"] input:focus-visible,
+    [data-theme="notebook"] select:focus-visible,
+    [data-theme="notebook"] textarea:focus-visible {
+      outline-color: var(--acid) !important;
+    }
+
+    /* ---- The theme toggle: a quiet folio mark, not a nav link ---- */
+    .theme-toggle {
+      flex: 0 0 auto;
+      align-self: center;
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .theme-toggle:hover { border-color: var(--acid); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--acid); outline-offset: 2px; }
+    .theme-toggle-mark { display: flex; width: 12px; height: 12px; transition: transform .5s cubic-bezier(.3, .7, .2, 1); }
+    .theme-toggle-mark i { display: block; width: 6px; height: 12px; }
+    .theme-toggle-mark i:first-child { background: #ece6d5; }
+    .theme-toggle-mark i:last-child { background: #241f17; border-left: 1px solid #ece6d5; }
+    .theme-toggle.is-flipped .theme-toggle-mark { transform: rotate(180deg); }
+
+    /* ---- Theme wipe: a calm radial reveal from the toggle ---- */
+    ::view-transition-old(root), ::view-transition-new(root) {
+      animation: none; mix-blend-mode: normal;
+    }
+    ::view-transition-new(root) {
+      z-index: 2147483647;
+      clip-path: circle(0px at var(--tx, 50vw) var(--ty, 12px));
+      animation: theme-wipe .7s cubic-bezier(.32, .72, .24, 1) forwards;
+    }
+    @keyframes theme-wipe {
+      to { clip-path: circle(150vmax at var(--tx, 50vw) var(--ty, 12px)); }
+    }
+
+    @media (max-width: 900px) {
+      [data-theme="notebook"] .hero-art::after {
+        background: linear-gradient(0deg, rgba(236,230,213,.8), transparent 50%);
+      }
+    }
   </style>
 </head>
 <body>
@@ -529,6 +693,9 @@
       <a href="#supply">Supply</a>
       <a href="#lab">Lab</a>
       <a href="#quote">Request quote</a>
+      <button class="theme-toggle" type="button" aria-label="Switch to classic dark theme" title="Switch theme">
+        <span class="theme-toggle-mark" aria-hidden="true"><i></i><i></i></span>
+      </button>
     </nav>
   </header>
 
@@ -842,6 +1009,49 @@
         copyStatus.clearTimer = window.setTimeout(() => { copyStatus.textContent = ''; }, 1800);
       });
     });
+  </script>
+  <script>
+    (() => {
+      // Theme engine: notebook is the default, a stored choice wins (the head
+      // script already set data-theme before first paint). The toggle flips
+      // live; with the view-transition API the new theme wipes in radially
+      // from the toggle, otherwise the tonal CSS transitions carry it.
+      const KEY = 'emi-site-theme';
+      const root = document.documentElement;
+      const meta = document.querySelector('meta[name="theme-color"]');
+      const scheme = document.querySelector('meta[name="color-scheme"]');
+      const COLORS = { notebook: '#ece6d5', classic: '#090a0a' };
+      const btn = document.querySelector('.theme-toggle');
+      const current = () => (root.dataset.theme === 'classic' ? 'classic' : 'notebook');
+      const otherName = (t) => (t === 'classic' ? 'notebook folio' : 'classic dark');
+      function apply(t) {
+        root.dataset.theme = t;
+        if (meta) meta.setAttribute('content', COLORS[t]);
+        if (scheme) scheme.setAttribute('content', t === 'classic' ? 'dark' : 'light');
+        if (btn) btn.setAttribute('aria-label', 'Switch to ' + otherName(t) + ' theme');
+      }
+      function toggle() {
+        const next = current() === 'classic' ? 'notebook' : 'classic';
+        try { localStorage.setItem(KEY, next); } catch (_) {}
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (btn) {
+          const r = btn.getBoundingClientRect();
+          root.style.setProperty('--tx', Math.round(r.left + r.width / 2) + 'px');
+          root.style.setProperty('--ty', Math.round(r.top + r.height / 2) + 'px');
+          btn.classList.toggle('is-flipped', next === 'classic');
+        }
+        if (!reduced && document.startViewTransition) {
+          document.startViewTransition(() => apply(next));
+        } else {
+          apply(next);
+        }
+      }
+      if (btn) {
+        btn.classList.toggle('is-flipped', current() === 'classic');
+        btn.addEventListener('click', toggle);
+      }
+      apply(current());
+    })();
   </script>
   <script>
     const currentBuildVersion = document.querySelector('meta[name="build-version"]')?.content;

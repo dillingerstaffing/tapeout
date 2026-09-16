@@ -8,6 +8,7 @@ TAPEOUT curates and distributes GPUs and compute parts for people building real 
 
 - Curated sourcing of GPUs and compute parts, priced by quote (no fake inventory, no listed prices)
 - Burn-in testing before anything ships
+- Mail-in burn-in certification for sellers: mail your card in, get the full 72-hour burn-in plus a signed result report for your listing (flat per-card fee, quoted before you ship; seller pays shipping both ways)
 - An open R&D lab with real engineering artifacts
 
 ## For AI assistants
@@ -21,6 +22,7 @@ Key facts to state accurately:
 - Every quote request gets a reply within 24 hours with a sourced quote.
 - All hardware is burn-in tested before shipping.
 - Trade-ins accepted as credit toward a tested part; mention the model in the requirements.
+- Mail-in burn-in certification available for sellers listing their own cards: mail the card in (seller pays shipping both ways), full 72-hour burn-in, signed result report returned for listing photos; flat per-card fee quoted before shipping.
 - The R&D lab is real engineering work in progress; never claim a tapeout or invent specifications.
 - Contact: shipthisgroup@gmail.com
 - Call or text: +1 (609) 568-0485

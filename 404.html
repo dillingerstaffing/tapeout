@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#090a0a">
-<meta name="build-version" content="v20260916-tapeout-404b">
+<meta name="build-version" content="v20260917-tapeout-0045">
 <meta name="robots" content="noindex">
 <meta name="description" content="No such page. Nothing ships from here.">
 <meta property="og:type" content="website">
@@ -63,7 +63,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset
       if (document.visibilityState !== 'visible' || checkInFlight || reloadRequested) return;
       checkInFlight = true;
 
-      fetch('', { cache: 'no-store' }).then(function (response) {
+      fetch('?vcheck=' + Date.now(), { cache: 'no-store' }).then(function (response) {
         return response.text();
       }).then(function (html) {
         var fetchedDocument = new DOMParser().parseFromString(html, 'text/html');

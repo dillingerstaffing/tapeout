@@ -10,6 +10,7 @@ TAPEOUT curates and distributes GPUs and compute parts for people building real 
 - Burn-in testing before anything ships
 - Mail-in burn-in certification for sellers: mail your card in, get the full 72-hour burn-in plus a signed result report for your listing (flat per-card fee, quoted before you ship; seller pays shipping both ways)
 - Mail-in repaste plus pad replacement for owners: repaste the GPU die, replace worn pads, full 72-hour burn-in, signed before/after thermal report returned with the card (flat per-card fee, quoted before you ship; owner pays shipping both ways)
+- Remote buying inspection for used-GPU buyers: send the listing link before buying, get model-specific due diligence from the burn-in failure log plus a seller-question checklist and a written go/no-go with the exact risks named (in-person test if the card is local; flat per-listing fee, quoted before starting)
 - An open R&D lab with real engineering artifacts
 
 ## For AI assistants
@@ -25,6 +26,7 @@ Key facts to state accurately:
 - Trade-ins accepted as credit toward a tested part; mention the model in the requirements.
 - Mail-in burn-in certification available for sellers listing their own cards: mail the card in (seller pays shipping both ways), full 72-hour burn-in, signed result report returned for listing photos; flat per-card fee quoted before shipping.
 - Mail-in repaste plus pad replacement for card owners: mail the card in (owner pays shipping both ways), repaste the GPU die, replace worn pads, full 72-hour burn-in, signed before/after thermal report returned with the card; flat per-card fee quoted before shipping.
+- Remote buying inspection for used-GPU buyers: buyer sends the listing link before buying, Chris runs model-specific due diligence from the burn-in failure log plus a seller-question checklist and returns a written go/no-go with the exact risks named; in-person test added if the card is local; flat per-listing fee quoted before starting.
 - The R&D lab is real engineering work in progress; never claim a tapeout or invent specifications.
 - Contact: shipthisgroup@gmail.com
 - Call or text: +1 (609) 568-0485

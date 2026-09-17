@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- TAPEOUT home-screen mark, Notebook DL.
+       Paper #ece6d5, ink #241f17, one sanguine accent #8c3f22 (pin 1). -->
+  <rect width="512" height="512" fill="#ece6d5"/>
+  <g fill="none" stroke="#241f17" stroke-width="16">
+    <rect x="156" y="156" width="200" height="200"/>
+    <rect x="204" y="204" width="104" height="104" stroke-width="8"/>
+    <!-- pins: 4 per edge, 16 wide, 44 long -->
+    <path d="M176 112v44M224 112v44M272 112v44M320 112v44"/>
+    <path d="M176 356v44M224 356v44M272 356v44M320 356v44"/>
+    <path d="M112 176h44M112 224h44M112 272h44M112 320h44"/>
+    <path d="M356 176h44M356 224h44M356 272h44M356 320h44"/>
+  </g>
+  <!-- pin 1, the single sanguine accent -->
+  <path d="M176 112v44" stroke="#8c3f22" stroke-width="16" fill="none"/>
+</svg>

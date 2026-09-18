@@ -22,7 +22,7 @@
       if (scheme) scheme.setAttribute('content', t === 'classic' ? 'dark' : 'light');
     })();
   </script>
-  <meta name="build-version" content="v20260917-tapeout-0955">
+  <meta name="build-version" content="v20260918-tapeout-1745">
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ece6d5'/%3E%3Crect x='19' y='19' width='26' height='26' fill='none' stroke='%23241f17' stroke-width='2'/%3E%3Crect x='26' y='26' width='12' height='12' fill='none' stroke='%23241f17' stroke-width='1'/%3E%3Crect x='21' y='13' width='2' height='7' fill='%238c3f22'/%3E%3Crect x='27' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='21' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='27' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='13' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='39' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='39' width='7' height='2' fill='%23241f17'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -107,6 +107,30 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Send the listing link before buying. We run model-specific due diligence from our burn-in failure log plus a seller-question checklist, and return a written go/no-go with the exact risks named. In-person test added if the card is local. Flat per-listing fee, quoted before we start."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this listing fairly priced? Get a written fair-price verdict before you offer.",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Send the listing link before buying. We check it against recent sold listings and the going rate for that card, and return a written fair-price verdict plus what to offer. Flat per-listing fee, quoted before we start."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dead card? Get a written fault-class verdict before you pay for a repair.",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mail the card in; you pay shipping both ways. We run the test-rig sequence: power draw, POST behavior, thermal behavior, VBIOS read, fan and VRM sanity, and return a written verdict naming the fault class plus what a repair should fairly cost. Flat diagnostic fee, quoted before you ship. Diagnosis only, no component-level repair."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should you buy? Get a written build sheet for your budget.",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Send your budget and what the machine is for: gaming, editing, homelab, AI. You get a written build sheet: the exact parts to buy, the GPU pick justified from our weekly price watch and burn-in failure log, and where to buy each part. Flat per-sheet fee, quoted before we start. This is planning, not a card: no inventory, no waiting."
           }
         },
         {
@@ -896,6 +920,18 @@
         <div class="quote-faq" role="group" aria-labelledby="inspect-faq-question">
           <h3 id="inspect-faq-question">Buying a used card? Get a written go/no-go before you pay.</h3>
           <p>Send us the listing link before you buy. We run model-specific due diligence from our burn-in failure log plus a seller-question checklist, and send back a written go/no-go with the exact risks named. In-person test added if the card is local. Flat per-listing fee, quoted before we start. Ask about an inspection: <span class="contact-options contact-options--inline" role="group" aria-label="Inspection contact options"><a class="contact-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com&amp;su=Used-GPU%20buying%20inspection&amp;body=Listing%20URL%3A%0ACard%20model%3A%0AAsking%20price%3A%0ASeller%20location%20%28city%29%3A%0AAnything%20else%3A" target="_blank" rel="noopener noreferrer">Open in Gmail</a><button class="contact-action" type="button" data-copy-email>Copy address</button><a class="contact-action" href="mailto:shipthisgroup@gmail.com?subject=Used-GPU%20buying%20inspection&amp;body=Listing%20URL%3A%0ACard%20model%3A%0AAsking%20price%3A%0ASeller%20location%20%28city%29%3A%0AAnything%20else%3A">Email app</a><span class="contact-status" role="status" aria-live="polite"></span></span></p>
+        </div>
+        <div class="quote-faq" role="group" aria-labelledby="pricecheck-faq-question">
+          <h3 id="pricecheck-faq-question">Is this listing fairly priced? Get a written fair-price verdict before you offer.</h3>
+          <p>Send us the listing link before you buy. We check it against recent sold listings and the going rate for that card, and send back a written fair-price verdict plus what to offer. Flat per-listing fee, quoted before we start. Ask about a price check: <span class="contact-options contact-options--inline" role="group" aria-label="Price check contact options"><a class="contact-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com&amp;su=Fair-price%20check%20for%20a%20used-GPU%20listing&amp;body=Listing%20URL%3A%0ACard%20model%3A%0AAsking%20price%3A" target="_blank" rel="noopener noreferrer">Open in Gmail</a><button class="contact-action" type="button" data-copy-email>Copy address</button><a class="contact-action" href="mailto:shipthisgroup@gmail.com?subject=Fair-price%20check%20for%20a%20used-GPU%20listing&amp;body=Listing%20URL%3A%0ACard%20model%3A%0AAsking%20price%3A">Email app</a><span class="contact-status" role="status" aria-live="polite"></span></span></p>
+        </div>
+        <div class="quote-faq" role="group" aria-labelledby="diagnostic-faq-question">
+          <h3 id="diagnostic-faq-question">Dead card? Get a written fault-class verdict before you pay for a repair.</h3>
+          <p>Mail the card in; you pay shipping both ways. We run the test-rig sequence: power draw, POST behavior, thermal behavior, VBIOS read, fan and VRM sanity, and send back a written verdict naming the fault class (VRM, memory, core, VBIOS/firmware, or not-the-card) plus what a repair should fairly cost. Flat diagnostic fee, quoted before you ship. Diagnosis only, no component-level repair. Ask about a diagnostic: <span class="contact-options contact-options--inline" role="group" aria-label="Diagnostic contact options"><a class="contact-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com&amp;su=Dead-GPU%20diagnostic&amp;body=Card%20model%3A%0ASymptoms%20%28what%20happens%20on%20power-on%29%3A%0AWhere%20are%20you%20shipping%20from%3A" target="_blank" rel="noopener noreferrer">Open in Gmail</a><button class="contact-action" type="button" data-copy-email>Copy address</button><a class="contact-action" href="mailto:shipthisgroup@gmail.com?subject=Dead-GPU%20diagnostic&amp;body=Card%20model%3A%0ASymptoms%20%28what%20happens%20on%20power-on%29%3A%0AWhere%20are%20you%20shipping%20from%3A">Email app</a><span class="contact-status" role="status" aria-live="polite"></span></span></p>
+        </div>
+        <div class="quote-faq" role="group" aria-labelledby="buildsheet-faq-question">
+          <h3 id="buildsheet-faq-question">What should you buy? Get a written build sheet for your budget.</h3>
+          <p>Send your budget and what the machine is for: gaming, editing, homelab, AI. You get a written build sheet: the exact parts to buy, the GPU pick justified from our weekly price watch and burn-in failure log, and where to buy each part. Flat per-sheet fee, quoted before we start. This is planning, not a card: no inventory, no waiting. Ask for a build sheet: <span class="contact-options contact-options--inline" role="group" aria-label="Build sheet contact options"><a class="contact-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com&amp;su=Build-sheet%20request&amp;body=Budget%3A%0AWorkload%20%28gaming%2C%20editing%2C%20homelab%2C%20AI%29%3A%0AGames%20or%20apps%3A%0AMonitor%20resolution%3A%0AAnything%20I%20already%20own%3A" target="_blank" rel="noopener noreferrer">Open in Gmail</a><button class="contact-action" type="button" data-copy-email>Copy address</button><a class="contact-action" href="mailto:shipthisgroup@gmail.com?subject=Build-sheet%20request&amp;body=Budget%3A%0AWorkload%3A%0AGames%20or%20apps%3A%0AMonitor%20resolution%3A%0AAnything%20I%20already%20own%3A">Email app</a><span class="contact-status" role="status" aria-live="polite"></span></span></p>
         </div>
         <div class="quote-faq" role="group" aria-labelledby="after-quote-faq-question">
           <h3 id="after-quote-faq-question">What happens after I request a quote?</h3>

@@ -22,7 +22,7 @@
       if (scheme) scheme.setAttribute('content', t === 'classic' ? 'dark' : 'light');
     })();
   </script>
-  <meta name="build-version" content="v20260919-tapeout-1355">
+  <meta name="build-version" content="v20260919-tapeout-1520">
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ece6d5'/%3E%3Crect x='19' y='19' width='26' height='26' fill='none' stroke='%23241f17' stroke-width='2'/%3E%3Crect x='26' y='26' width='12' height='12' fill='none' stroke='%23241f17' stroke-width='1'/%3E%3Crect x='21' y='13' width='2' height='7' fill='%238c3f22'/%3E%3Crect x='27' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='21' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='27' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='13' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='39' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='39' width='7' height='2' fill='%23241f17'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -138,7 +138,7 @@
           "name": "Know the exact card you want? We watch the listings and vet them before you go.",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Tell us the exact card and your budget, and we watch local listings for 7 days: every promising candidate gets the remote-inspection vetting, fair-price verdict, and seller-question checklist before you spend a dollar. You buy from the seller; we never touch the card, so there is no inventory, no waiting, and no markup. Flat finder's fee, quoted before the watch starts."
+            "text": "Tell us the exact card and your budget, and we watch local listings: every promising candidate gets the remote-inspection vetting, fair-price verdict, and seller-question checklist before you spend a dollar. You buy from the seller; we never touch the card, so there is no inventory, no waiting, and no markup. Flat finder's fee, quoted before the watch starts."
           }
         },
         {
@@ -146,7 +146,7 @@
           "name": "What happens after I request a quote?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You describe your workload, target hardware, quantity, and timeline; we reply within 24 hours with a sourced quote; every part runs burn-in testing before anything ships."
+            "text": "You describe your workload, target hardware, quantity, and timeline; we reply with a sourced quote; every part runs burn-in testing before anything ships."
           }
         },
         {
@@ -170,7 +170,7 @@
           "name": "How do I know you received my request?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You send the request from your own mail app, so the sent copy is your receipt. We reply to every request within 24 hours with a sourced quote."
+            "text": "You send the request from your own mail app, so the sent copy is your receipt. We reply to every request with a sourced quote."
           }
         }
       ]
@@ -891,7 +891,7 @@
             <article class="log-entry"><span class="log-status">CURRENT</span><strong>Architecture study</strong><p>Mapping the interfaces, telemetry, power, thermal, and debug requirements of a practical validation platform.</p></article>
             <article class="log-entry"><span class="log-status">NEXT</span><strong>Bench prototype</strong><p>Validate the control and measurement path with off-the-shelf components before committing to custom silicon or a custom board.</p></article>
             <article class="log-entry"><span class="log-status">2026-09-13</span><strong>Burn-in gate documented</strong><p>The burn-in test plan and the per-part result-record format are now published on this page.</p></article>
-            <article class="log-entry"><span class="log-status">2026-09-17</span><strong>Used-GPU price watch, week 1 (baseline)</strong><p>Week 1 baseline for the five 30-series models we track. Trading bands are the P25 to P75 of actual eBay, Reddit, and Slickdeals trades (Hardware Hunter, data as of Sep 7, 2026): RTX 3060 12GB $228 to $245, 3060 Ti $225 to $280, 3070 $267 to $350, 3080 10GB $350 to $500, 3090 $1,149 to $1,399. Same five models next week, with the move. We quote tested cards below new MSRP, with a signed 72-hour burn-in report.</p></article>
+            <article class="log-entry"><span class="log-status">2026-09-17</span><strong>Used-GPU price watch, week 1 (baseline)</strong><p>Week 1 baseline for the five 30-series models we track. Trading bands are the P25 to P75 of actual eBay, Reddit, and Slickdeals trades (Hardware Hunter, data as of Sep 7, 2026): RTX 3060 12GB $228 to $245, 3060 Ti $225 to $280, 3070 $267 to $350, 3080 10GB $350 to $500, 3090 $1,149 to $1,399. Same five models next week, with the move. We quote tested cards with a signed 72-hour burn-in report.</p></article>
             <p class="lab-note">No tapeout claimed. No fictional specification. Updates move here when the engineering does.</p>
           </div>
         </div>
@@ -943,11 +943,11 @@
         </div>
         <div class="quote-faq" role="group" aria-labelledby="wantedlist-faq-question">
           <h3 id="wantedlist-faq-question">Know the exact card you want? We watch the listings and vet them before you go.</h3>
-          <p>Tell us the exact card and your budget, and we watch local listings for 7 days: every promising candidate gets the remote-inspection vetting, fair-price verdict, and seller-question checklist before you spend a dollar. You buy from the seller; we never touch the card, so there is no inventory, no waiting, and no markup. Flat finder's fee, quoted before the watch starts. Start a watch: <span class="contact-options contact-options--inline" role="group" aria-label="Wanted-list watch contact options"><a class="contact-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com&amp;su=Wanted-list%20watch%20request&amp;body=Exact%20card%20model%3A%0ABudget%3A%0AMax%20distance%20%28local%20only%29%3A%0ADeadline%3A" target="_blank" rel="noopener noreferrer">Open in Gmail</a><button class="contact-action" type="button" data-copy-email>Copy address</button><a class="contact-action" href="mailto:shipthisgroup@gmail.com?subject=Wanted-list%20watch%20request&amp;body=Exact%20card%20model%3A%0ABudget%3A%0AMax%20distance%20%28local%20only%29%3A%0ADeadline%3A">Email app</a><span class="contact-status" role="status" aria-live="polite"></span></span></p>
+          <p>Tell us the exact card and your budget, and we watch local listings: every promising candidate gets the remote-inspection vetting, fair-price verdict, and seller-question checklist before you spend a dollar. You buy from the seller; we never touch the card, so there is no inventory, no waiting, and no markup. Flat finder's fee, quoted before the watch starts. Start a watch: <span class="contact-options contact-options--inline" role="group" aria-label="Wanted-list watch contact options"><a class="contact-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com&amp;su=Wanted-list%20watch%20request&amp;body=Exact%20card%20model%3A%0ABudget%3A%0AMax%20distance%20%28local%20only%29%3A%0ADeadline%3A" target="_blank" rel="noopener noreferrer">Open in Gmail</a><button class="contact-action" type="button" data-copy-email>Copy address</button><a class="contact-action" href="mailto:shipthisgroup@gmail.com?subject=Wanted-list%20watch%20request&amp;body=Exact%20card%20model%3A%0ABudget%3A%0AMax%20distance%20%28local%20only%29%3A%0ADeadline%3A">Email app</a><span class="contact-status" role="status" aria-live="polite"></span></span></p>
         </div>
         <div class="quote-faq" role="group" aria-labelledby="after-quote-faq-question">
           <h3 id="after-quote-faq-question">What happens after I request a quote?</h3>
-          <p>You describe your workload, target hardware, quantity, and timeline; we reply within 24 hours with a sourced quote; every part runs burn-in testing before anything ships.</p>
+          <p>You describe your workload, target hardware, quantity, and timeline; we reply with a sourced quote; every part runs burn-in testing before anything ships.</p>
         </div>
         <div class="quote-faq" role="group" aria-labelledby="pricing-faq-question">
           <h3 id="pricing-faq-question">Why aren't prices listed on the site?</h3>
@@ -959,7 +959,7 @@
         </div>
         <div class="quote-faq" role="group" aria-labelledby="confirm-faq-question">
           <h3 id="confirm-faq-question">How do I know you received my request?</h3>
-          <p>You send the request from your own mail app, so the sent copy is your receipt. We reply to every request within 24 hours with a sourced quote.</p>
+          <p>You send the request from your own mail app, so the sent copy is your receipt. We reply to every request with a sourced quote.</p>
         </div>
         <div class="quote-layout">
           <aside class="quote-aside">
@@ -996,21 +996,14 @@
                 </button>
                 <button class="contact-action form-gmail" type="button" data-gmail-quote>Open in Gmail instead</button>
               </div>
-              <p class="form-note">We reply to every quote request within 24 hours.</p>
-              <p class="form-note">Have a card to replace? We take trade-ins as credit toward a tested part. Mention the model in your requirements.</p>
+              <p class="form-note">We reply to every quote request.</p>
+              <p class="form-note">Have a card to replace? Mention the model in your requirements and ask about a trade-in credit.</p>
               <p class="form-note">Retiring hardware too? <a href="https://dillingerstaffing.github.io/old-iron/" target="_blank" rel="noopener noreferrer">OLD IRON</a> picks it up free, with certified wipes.</p>
             </div>
             <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
             <noscript><p class="form-status">Email composition needs JavaScript. <a href="mailto:shipthisgroup@gmail.com?subject=Quote%20request&amp;body=Name%3A%0AWork%20email%3A%0AOrganization%3A%0ANeed%3A%0AQuantity%3A%0ARequirements%3A%0AWhen%20do%20you%20need%20it%20by%3A">Email shipthisgroup@gmail.com</a>.</p></noscript>
           </form>
         </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="shell about">
-        <span class="section-no">ABOUT</span>
-        <p><strong>TAPEOUT is two systems engineers</strong> building a disciplined compute supply business and an open hardware R&amp;D practice.</p>
       </div>
     </section>
   </main>

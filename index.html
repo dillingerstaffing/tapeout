@@ -739,6 +739,17 @@
         background: linear-gradient(0deg, rgba(236,230,213,.8), transparent 50%);
       }
     }
+
+    /* Print: the classic theme's light text would print as pale text on white
+       paper (browsers omit backgrounds), which is unreadable. Force light
+       paper, dark ink, and drop screen-only controls. */
+    @media print {
+      html, body { background: #ffffff !important; color: #1b1a17 !important; color-scheme: light; }
+      body { background-image: none !important; }
+      * { color: #1b1a17 !important; border-color: #1b1a17 !important; }
+      a { text-decoration: underline; }
+      .skip-link, .theme-toggle { display: none !important; }
+    }
   </style>
 </head>
 <body>

@@ -702,6 +702,7 @@
     /* ---- The theme toggle: a quiet folio mark, not a nav link ---- */
     .theme-toggle {
       flex: 0 0 auto;
+      position: relative;
       align-self: center;
       width: 26px;
       height: 26px;
@@ -715,6 +716,8 @@
     }
     .theme-toggle:hover { border-color: var(--acid); }
     .theme-toggle:focus-visible { outline: 2px solid var(--acid); outline-offset: 2px; }
+    /* 44px tap target: the hit area is larger than the 26px visual. */
+    .theme-toggle::after { content: ""; position: absolute; top: -9px; right: -9px; bottom: -9px; left: -9px; }
     .theme-toggle-mark { display: flex; width: 12px; height: 12px; transition: transform .5s cubic-bezier(.3, .7, .2, 1); }
     .theme-toggle-mark i { display: block; width: 6px; height: 12px; }
     .theme-toggle-mark i:first-child { background: #ece6d5; }

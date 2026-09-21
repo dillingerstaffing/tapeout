@@ -64,7 +64,7 @@ main{display:contents}
     var checkInFlight = false;
     var reloadRequested = false;
 
-    document.addEventListener('visibilitychange', function () {
+    function checkTapeoutBuild() {
       if (document.visibilityState !== 'visible' || checkInFlight || reloadRequested) return;
       checkInFlight = true;
 
@@ -88,7 +88,12 @@ main{display:contents}
       }).then(function () {
         checkInFlight = false;
       });
-    });
+    }
+
+    document.addEventListener('visibilitychange', checkTapeoutBuild);
+    // A fresh launch may never fire visibilitychange, so check once shortly
+    // after load as well.
+    setTimeout(checkTapeoutBuild, 2500);
   })();
 </script>
 <script>

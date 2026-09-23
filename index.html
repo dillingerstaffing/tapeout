@@ -22,7 +22,7 @@
       if (scheme) scheme.setAttribute('content', t === 'classic' ? 'dark' : 'light');
     })();
   </script>
-  <meta name="build-version" content="v20260923-tapeout-1800">
+  <meta name="build-version" content="v20260923-tapeout-1815">
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ece6d5'/%3E%3Crect x='19' y='19' width='26' height='26' fill='none' stroke='%23241f17' stroke-width='2'/%3E%3Crect x='26' y='26' width='12' height='12' fill='none' stroke='%23241f17' stroke-width='1'/%3E%3Crect x='21' y='13' width='2' height='7' fill='%238c3f22'/%3E%3Crect x='27' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='21' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='27' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='13' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='39' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='39' width='7' height='2' fill='%23241f17'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -82,7 +82,7 @@
           "name": "What does burn-in testing actually cover?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Every part we ship runs under sustained load before it leaves, and anything that errors or looks unstable does not ship."
+            "text": "Sustained-load testing is available before anything ships: the card runs under heavy load while we watch for crashes, visual artifacts, and thermal problems. Anything that errors or looks unstable does not ship."
           }
         },
         {
@@ -90,7 +90,7 @@
           "name": "Selling a used card yourself? Get a signed burn-in report for your listing.",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Mail the card in; you pay shipping both ways. We run the full 72-hour burn-in and return the card with a signed result report to put in your listing photos. Flat per-card fee, quoted before you ship."
+            "text": "Mail the card in; you pay shipping both ways. We run a full sustained-load burn-in test and return the card with a signed result report to put in your listing photos. Flat per-card fee, quoted before you ship."
           }
         },
         {
@@ -98,7 +98,7 @@
           "name": "Card running hot? Mail-in repaste plus pad replacement, validated by burn-in.",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Mail the card in; you pay shipping both ways. We repaste the GPU die, replace worn pads, run the full 72-hour burn-in, and return the card with a signed before/after thermal report. Flat per-card fee, quoted before you ship."
+            "text": "Mail the card in; you pay shipping both ways. We repaste the GPU die, replace worn pads, run a full sustained-load burn-in test, and return the card with a signed before/after thermal report. Flat per-card fee, quoted before you ship."
           }
         },
         {
@@ -216,6 +216,9 @@
       top: 0;
       left: 16px;
       padding: 12px 16px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
       background: var(--ink);
       color: var(--void);
       font: 600 13px/1.2 "IBM Plex Mono", monospace;
@@ -706,23 +709,19 @@
     /* ---- The theme toggle: a quiet folio mark, not a nav link ---- */
     .theme-toggle {
       flex: 0 0 auto;
-      position: relative;
       align-self: center;
-      width: 26px;
-      height: 26px;
+      width: 44px;
+      height: 44px;
       display: grid;
       place-items: center;
       padding: 0;
       background: transparent;
-      border: 1px solid var(--line);
-      border-radius: 2px;
+      border: 0;
       cursor: pointer;
     }
-    .theme-toggle:hover { border-color: var(--acid); }
+    .theme-toggle:hover .theme-toggle-mark { border-color: var(--acid); }
     .theme-toggle:focus-visible { outline: 2px solid var(--acid); outline-offset: 2px; }
-    /* 44px tap target: the hit area is larger than the 26px visual. */
-    .theme-toggle::after { content: ""; position: absolute; top: -9px; right: -9px; bottom: -9px; left: -9px; }
-    .theme-toggle-mark { display: flex; width: 12px; height: 12px; transition: transform .5s cubic-bezier(.3, .7, .2, 1); }
+    .theme-toggle-mark { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border: 1px solid var(--line); border-radius: 2px; transition: transform .5s cubic-bezier(.3, .7, .2, 1); }
     .theme-toggle-mark i { display: block; width: 6px; height: 12px; }
     .theme-toggle-mark i:first-child { background: #ece6d5; }
     .theme-toggle-mark i:last-child { background: #241f17; border-left: 1px solid #ece6d5; }
@@ -774,37 +773,39 @@
   position: relative;
 }
 .pc-media {
-  position: relative;
-  min-height: 56px;
-  background: transparent;
   border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  padding: 12px 20px 16px;
+  position: relative;
+}
+/* Sold card: real photo, blunt ribbon, no price, no request CTA. */
+.product-card.sold .pc-media { padding: 0; overflow: hidden; }
+.product-card.sold .pc-media img { display: block; width: 100%; height: 230px; object-fit: cover; filter: saturate(.8); }
+.pc-sold-ribbon {
+  position: absolute; top: 14px; left: 0;
+  background: var(--ink); color: var(--paper);
+  font: 600 13px/1 "IBM Plex Mono", monospace; letter-spacing: .14em; text-transform: uppercase;
+  padding: 11px 18px;
+}
+.pc-sold-line {
+  margin: 20px 0 0; font: 600 13px/1.5 "IBM Plex Mono", monospace;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+}
+.product-card.sold .pc-detail { margin-top: 6px; }
+/* Dossier sold state */
+.ps-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0 4px; }
+.ps-photos img { display: block; width: 100%; height: 190px; object-fit: cover; border: 1px solid var(--line); }
+.ps-sold { border: 1px solid var(--line); padding: 18px 20px; margin: 20px 0 0; }
+.ps-sold strong { display: block; font: 600 14px/1.4 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
+.ps-sold p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.ps-sold a { color: var(--ink); }
+@media (max-width: 620px) { .ps-photos { grid-template-columns: 1fr; } .ps-photos img { height: 210px; } }
+.pc-media-top {
   display: flex;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  cursor: pointer;
-  padding: 10px 12px;
-}
-.pc-placeholder span {
-  font: 400 10.5px/1.5 "IBM Plex Mono", monospace;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.product-card:hover { border-color: var(--ink); }
-.pc-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-.pc-badges {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  display: flex;
   justify-content: space-between;
-  padding: 10px 12px;
-  pointer-events: none;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 .pc-badge, .pc-units {
   font: 500 10px/1.4 "IBM Plex Mono", monospace;
@@ -816,6 +817,19 @@
   color: var(--paper);
   padding: 5px 9px;
 }
+.pc-units { color: var(--muted); }
+.pc-placeholder {
+  border: 1px dashed var(--line);
+  padding: 20px 12px;
+  text-align: center;
+}
+.pc-placeholder span {
+  font: 400 10.5px/1.5 "IBM Plex Mono", monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.product-card:hover { border-color: var(--ink); }
 [data-theme="classic"] .pc-badge { color: #090a0a; }
 [data-theme="classic"] .pc-reserve,
 [data-theme="classic"] .ps-reserve,
@@ -854,6 +868,10 @@
   color: var(--muted);
   border: 0;
   padding: 4px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font: 500 12px/1.2 "IBM Plex Mono", monospace;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -883,18 +901,14 @@
 .product-sheet {
   background: var(--bg);
   border: 1px solid var(--line);
-  width: min(1020px, 100%);
+  width: min(640px, 100%);
   max-height: calc(100vh - 48px);
   overflow: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 }
-.ps-media { background: var(--paper); border-right: 1px solid var(--line); display: flex; align-items: center; justify-content: center; padding: 40px; min-height: 420px; }
-.ps-media img { width: 100%; height: auto; object-fit: contain; }
 .ps-body { padding: 36px 36px 32px; }
 .ps-close {
   float: right; background: transparent; border: 1px solid var(--line); color: var(--muted);
-  width: 38px; height: 38px; font-size: 18px; cursor: pointer; line-height: 1;
+  width: 44px; height: 44px; font-size: 18px; cursor: pointer; line-height: 1;
 }
 .ps-close:hover { color: var(--ink); border-color: var(--ink); }
 .ps-index { font: 500 11px/1.2 "IBM Plex Mono", monospace; letter-spacing: .12em; color: var(--signal); }
@@ -923,12 +937,11 @@
   background: var(--bg); border-left: 1px solid var(--line);
   padding: 32px 30px; overflow: auto;
 }
-.rd-close { float: right; background: transparent; border: 1px solid var(--line); color: var(--muted); width: 38px; height: 38px; font-size: 18px; cursor: pointer; }
+.rd-close { float: right; background: transparent; border: 1px solid var(--line); color: var(--muted); width: 44px; height: 44px; font-size: 18px; cursor: pointer; }
 .rd-close:hover { color: var(--ink); border-color: var(--ink); }
 .reserve-drawer h2 { font-family: "Barlow Condensed", sans-serif; font-size: 32px; font-weight: 600; margin: 8px 0 4px; }
 .rd-sub { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
-.rd-item { display: flex; gap: 14px; border: 1px solid var(--line); padding: 12px; margin-bottom: 20px; align-items: center; }
-.rd-item img { width: 84px; height: 64px; object-fit: contain; background: var(--paper); }
+.rd-item { border: 1px solid var(--line); padding: 14px 16px; margin-bottom: 20px; }
 .rd-item .rd-name { font-weight: 600; font-size: 14px; }
 .rd-item .rd-price { font: 500 15px/1.4 "IBM Plex Mono", monospace; }
 .rd-steps { list-style: none; margin: 0 0 20px; padding: 0; }
@@ -937,8 +950,8 @@
 .rd-field { margin-bottom: 16px; }
 .rd-field label { display: block; font: 500 11px/1.4 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
 .rd-field input[type="email"] { width: 100%; background: var(--panel); border: 1px solid var(--line); color: var(--ink); padding: 13px 14px; font-size: 15px; }
-.rd-terms { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.6; color: var(--muted); margin: 4px 0 20px; }
-.rd-terms input { margin-top: 4px; accent-color: var(--signal); width: 16px; height: 16px; flex: none; }
+.rd-terms { display: flex; gap: 12px; align-items: center; font-size: 13px; line-height: 1.6; color: var(--muted); margin: 4px 0 20px; min-height: 44px; cursor: pointer; }
+.rd-terms input { margin: 0; accent-color: var(--signal); width: 22px; height: 22px; flex: none; }
 .rd-terms strong { color: var(--ink); }
 .rd-submit {
   width: 100%; background: var(--ink); color: var(--paper); border: 1px solid var(--ink);
@@ -955,8 +968,6 @@
 @media (max-width: 960px) {
   .store-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
   .how-steps { grid-template-columns: 1fr; gap: 22px; }
-  .product-sheet { grid-template-columns: 1fr; }
-  .ps-media { border-right: 0; border-bottom: 1px solid var(--line); min-height: 0; padding: 28px; }
 }
 @media (max-width: 620px) {
   .pc-trust { grid-template-columns: repeat(2, 1fr); }
@@ -966,13 +977,16 @@
   .store-grid { grid-template-columns: 1fr; }
   .reserve-drawer { top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 92vh; border-left: 0; border-top: 1px solid var(--line); }
   .ps-body h2 { font-size: 32px; }
+  /* Every tappable text link meets the 44px mobile target. */
+  .contact-options .contact-action,
+  .elsewhere a,
+  .form-note a { min-height: 44px; display: inline-flex; align-items: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pc-reserve, .pc-detail, .ps-reserve, .rd-submit { transition: none; }
 }
 .ps-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
 .ps-close, .rd-close { float: none; flex: none; }
-.ps-media { padding: 28px; }
 .offer-ledger {
   display: grid; grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--line); border-bottom: 0; margin-top: 44px;
@@ -1038,7 +1052,7 @@
         <img src="hero.jpg" alt="Technical illustration of an exposed graphics card test platform with heatsink and test leads" width="1600" height="1000" loading="eager" decoding="async" fetchpriority="high">
         <div class="telemetry" role="group" aria-label="Service facts">
           <div><span>Offers</span><strong>Limited, to order</strong></div>
-          <div><span>Validation</span><strong>Burn-in</strong></div>
+          <div><span>Load test</span><strong>On request</strong></div>
           <div><span>Focus</span><strong>Compute</strong></div>
         </div>
       </div>
@@ -1054,7 +1068,7 @@
           <div><span>Active offers</span><strong>06</strong></div>
           <div><span>Units per offer</span><strong>01</strong></div>
           <div><span>Sourcing</span><strong>To order</strong></div>
-          <div><span>Verification</span><strong>Burn-in</strong></div>
+          <div><span>Load test</span><strong>On request</strong></div>
         </div>
         <div class="store-grid" id="store-grid"></div>
         <p class="store-note"><strong>Request based.</strong> We confirm availability, exact condition, final price, and shipping cost after you request. Nothing is charged or agreed until you confirm.</p>
@@ -1091,13 +1105,13 @@
           <div class="test-copy">
             <p class="eyebrow">Before shipment</p>
             <h3>Burn-in, only if you want it.</h3>
-            <p>What it is: we run the card under heavy load for 72 hours straight, watching temperatures and checking for crashes or visual glitches.</p>
+            <p>What it is: sustained-load testing. We run the card under heavy load and watch for crashes, visual artifacts, and thermal problems. It may catch an unstable card before shipment.</p>
             <p>What it truly gives you: it catches cards that were already dying, so you do not pay for one that fails in week one. It does not make a used card new, and it does not guarantee how long it will last.</p>
             <p>Optional add-on, quoted before we start. Every card gets a basic visual inspection and fit check regardless.</p>
             <ul class="test-list">
               <li><span>Visual inspection</span><span>Included</span></li>
-              <li><span>72-hour burn-in</span><span>Optional</span></li>
-              <li><span>Result record</span><span>With burn-in</span></li>
+              <li><span>Sustained-load test</span><span>Optional</span></li>
+              <li><span>Result record</span><span>With load test</span></li>
             </ul>
           </div>
           <div class="test-visual">
@@ -1178,8 +1192,8 @@
             <article class="log-entry"><span class="log-status">CURRENT</span><strong>Architecture study</strong><p>Mapping the interfaces, telemetry, power, thermal, and debug requirements of a practical validation platform.</p></article>
             <article class="log-entry"><span class="log-status">NEXT</span><strong>Bench prototype</strong><p>Validate the control and measurement path with off-the-shelf components before committing to custom silicon or a custom board.</p></article>
             <article class="log-entry"><time class="log-status" datetime="2026-09-13">2026-09-13</time><strong>Burn-in gate documented</strong><p>The burn-in test plan and the per-part result-record format are now published on this page.</p></article>
-            <article class="log-entry"><time class="log-status" datetime="2026-09-17">2026-09-17</time><strong>Used-GPU price watch, week 1 (baseline)</strong><p>Week 1 baseline for the five 30-series models we track. Trading bands are the P25 to P75 of actual eBay, Reddit, and Slickdeals trades (Hardware Hunter, data as of Sep 7, 2026): RTX 3060 12GB $228 to $245, 3060 Ti $225 to $280, 3070 $267 to $350, 3080 10GB $350 to $500, 3090 $1,149 to $1,399. Same five models next week, with the move. We quote tested cards with a signed 72-hour burn-in report.</p></article>
-            <article class="log-entry"><time class="log-status" datetime="2026-09-22">2026-09-22</time><strong>Used-GPU price watch, week 2</strong><p>Same five models, checked Sep 22, 2026. Sources: ResalePrices averages over roughly 360 eBay listings per model (via PC Server and Parts, Sep 9) plus active eBay asks. 3060 12GB average $291, up from week 1's P25 to P75 of $228 to $245. 3060 Ti asking $220 to $280, flat. 3070 average $269, at the floor of week 1's $267 to $350. 3080 10GB asking $300 to $400, drifting down from week 1's $350 to $500. 3090 average $1,343, inside week 1's $1,149 to $1,399. The 3070 and 3060 12GB inversion persists: average used 3070 prices below average used 3060 12GB. We quote tested cards with a signed 72-hour burn-in report.</p></article>
+            <article class="log-entry"><time class="log-status" datetime="2026-09-17">2026-09-17</time><strong>Used-GPU price watch, week 1 (baseline)</strong><p>Week 1 baseline for the five 30-series models we track. Trading bands are the P25 to P75 of actual eBay, Reddit, and Slickdeals trades (Hardware Hunter, data as of Sep 7, 2026): RTX 3060 12GB $228 to $245, 3060 Ti $225 to $280, 3070 $267 to $350, 3080 10GB $350 to $500, 3090 $1,149 to $1,399. Same five models next week, with the move. We quote tested cards with a signed sustained-load test report.</p></article>
+            <article class="log-entry"><time class="log-status" datetime="2026-09-22">2026-09-22</time><strong>Used-GPU price watch, week 2</strong><p>Same five models, checked Sep 22, 2026. Sources: ResalePrices averages over roughly 360 eBay listings per model (via PC Server and Parts, Sep 9) plus active eBay asks. 3060 12GB average $291, up from week 1's P25 to P75 of $228 to $245. 3060 Ti asking $220 to $280, flat. 3070 average $269, at the floor of week 1's $267 to $350. 3080 10GB asking $300 to $400, drifting down from week 1's $350 to $500. 3090 average $1,343, inside week 1's $1,149 to $1,399. The 3070 and 3060 12GB inversion persists: average used 3070 prices below average used 3060 12GB. We quote tested cards with a signed sustained-load test report.</p></article>
             <p class="lab-note">No tapeout claimed. No fictional specification. Updates move here when the engineering does.</p>
           </div>
         </div>
@@ -1203,15 +1217,15 @@
         </div>
         <div class="quote-faq" role="group" aria-labelledby="burn-in-faq-question">
           <h3 id="burn-in-faq-question">What does burn-in testing actually cover?</h3>
-          <p>Every part we ship runs under sustained load before it leaves, and anything that errors or looks unstable does not ship.</p>
+          <p>Sustained-load testing is available before anything ships: the card runs under heavy load while we watch for crashes, visual artifacts, and thermal problems. Anything that errors or looks unstable does not ship.</p>
         </div>
         <div class="quote-faq" role="group" aria-labelledby="seller-cert-faq-question">
           <h3 id="seller-cert-faq-question">Selling a used card yourself? Get a signed burn-in report for your listing.</h3>
-          <p>Mail the card in; you pay shipping both ways. We run the full 72-hour burn-in and return the card with a signed result report to put in your listing photos. Flat per-card fee, quoted before you ship. Ask about certification: <span class="contact-options contact-options--inline" role="group" aria-label="Certification contact options"><a class="contact-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com&amp;su=Burn-in%20certification%20for%20a%20seller%20listing&amp;body=Card%20model%3A%0AWhere%20you%20will%20list%20it%3A%0AAnything%20I%20should%20know%20about%20the%20card%3A" target="_blank" rel="noopener noreferrer">Open in Gmail</a><button class="contact-action" type="button" data-copy-email>Copy address</button><a class="contact-action" href="mailto:shipthisgroup@gmail.com?subject=Burn-in%20certification%20for%20a%20seller%20listing&amp;body=Card%20model%3A%0AWhere%20you%20will%20list%20it%3A%0AAnything%20I%20should%20know%20about%20the%20card%3A">Email app</a><span class="contact-status" role="status" aria-live="polite"></span></span></p>
+          <p>Mail the card in; you pay shipping both ways. We run a full sustained-load burn-in test and return the card with a signed result report to put in your listing photos. Flat per-card fee, quoted before you ship. Ask about certification: <span class="contact-options contact-options--inline" role="group" aria-label="Certification contact options"><a class="contact-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com&amp;su=Burn-in%20certification%20for%20a%20seller%20listing&amp;body=Card%20model%3A%0AWhere%20you%20will%20list%20it%3A%0AAnything%20I%20should%20know%20about%20the%20card%3A" target="_blank" rel="noopener noreferrer">Open in Gmail</a><button class="contact-action" type="button" data-copy-email>Copy address</button><a class="contact-action" href="mailto:shipthisgroup@gmail.com?subject=Burn-in%20certification%20for%20a%20seller%20listing&amp;body=Card%20model%3A%0AWhere%20you%20will%20list%20it%3A%0AAnything%20I%20should%20know%20about%20the%20card%3A">Email app</a><span class="contact-status" role="status" aria-live="polite"></span></span></p>
         </div>
         <div class="quote-faq" role="group" aria-labelledby="repaste-faq-question">
           <h3 id="repaste-faq-question">Card running hot? Mail-in repaste plus pad replacement, validated by burn-in.</h3>
-          <p>Mail the card in; you pay shipping both ways. We repaste the GPU die, replace worn pads, run the full 72-hour burn-in, and return the card with a signed before/after thermal report. Flat per-card fee, quoted before you ship. Ask about a repaste: <span class="contact-options contact-options--inline" role="group" aria-label="Repaste contact options"><a class="contact-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com&amp;su=Repaste%20and%20pad%20replacement%20quote&amp;body=Card%20model%3A%0ASymptoms%20%28peak%20temps%2C%20noise%2C%20crashing%29%3A%0AWhere%20are%20you%20shipping%20from%3A" target="_blank" rel="noopener noreferrer">Open in Gmail</a><button class="contact-action" type="button" data-copy-email>Copy address</button><a class="contact-action" href="mailto:shipthisgroup@gmail.com?subject=Repaste%20and%20pad%20replacement%20quote&amp;body=Card%20model%3A%0ASymptoms%20%28peak%20temps%2C%20noise%2C%20crashing%29%3A%0AWhere%20are%20you%20shipping%20from%3A">Email app</a><span class="contact-status" role="status" aria-live="polite"></span></span></p>
+          <p>Mail the card in; you pay shipping both ways. We repaste the GPU die, replace worn pads, run a full sustained-load burn-in test, and return the card with a signed before/after thermal report. Flat per-card fee, quoted before you ship. Ask about a repaste: <span class="contact-options contact-options--inline" role="group" aria-label="Repaste contact options"><a class="contact-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shipthisgroup%40gmail.com&amp;su=Repaste%20and%20pad%20replacement%20quote&amp;body=Card%20model%3A%0ASymptoms%20%28peak%20temps%2C%20noise%2C%20crashing%29%3A%0AWhere%20are%20you%20shipping%20from%3A" target="_blank" rel="noopener noreferrer">Open in Gmail</a><button class="contact-action" type="button" data-copy-email>Copy address</button><a class="contact-action" href="mailto:shipthisgroup@gmail.com?subject=Repaste%20and%20pad%20replacement%20quote&amp;body=Card%20model%3A%0ASymptoms%20%28peak%20temps%2C%20noise%2C%20crashing%29%3A%0AWhere%20are%20you%20shipping%20from%3A">Email app</a><span class="contact-status" role="status" aria-live="polite"></span></span></p>
         </div>
         <div class="quote-faq" role="group" aria-labelledby="inspect-faq-question">
           <h3 id="inspect-faq-question">Buying a used card? Get a written go/no-go before you pay.</h3>
@@ -1298,14 +1312,18 @@
   </main>
     <div class="product-overlay" id="product-overlay" hidden>
       <div class="product-sheet" role="dialog" aria-modal="true" aria-labelledby="ps-name">
-        <div class="ps-media"><img id="ps-img" alt=""></div>
         <div class="ps-body">
           <div class="ps-top"><span class="ps-index" id="ps-index"></span><button class="ps-close" id="ps-close" aria-label="Close product details">&times;</button></div>
           <h2 id="ps-name"></h2>
           <p class="ps-blurb" id="ps-blurb"></p>
+          <div class="ps-photos" id="ps-photos" hidden></div>
           <div class="ps-price-row"><span class="ps-price" id="ps-price"></span><span class="ps-price-note">Target price<br>Shipping quoted</span></div>
           <table class="spec-table" id="ps-specs"></table>
           <p class="ps-terms" id="ps-terms"></p>
+          <div class="ps-sold" id="ps-sold" hidden>
+            <strong>Sold in 2026</strong>
+            <p>This card is gone. Nothing to request here. Want something like it? <a href="#quote">Send a quote request</a> and we will source one to order.</p>
+          </div>
           <button class="ps-reserve" id="ps-reserve">Request this card</button>
         </div>
       </div>
@@ -1316,7 +1334,7 @@
       <div class="ps-top"><span class="ps-index">REQUEST</span><button class="rd-close" id="rd-close" aria-label="Close request">&times;</button></div>
       <h2 id="rd-title">Request this card</h2>
       <p class="rd-sub">You pay nothing and agree to nothing yet.</p>
-      <div class="rd-item"><img id="rd-img" alt=""><div><div class="rd-name" id="rd-name"></div><div class="rd-price" id="rd-price"></div></div></div>
+      <div class="rd-item"><div><div class="rd-name" id="rd-name"></div><div class="rd-price" id="rd-price"></div></div></div>
       <ol class="rd-steps">
         <li data-n="01">You send the request below.</li>
         <li data-n="02">We confirm availability, exact condition, final price, and shipping cost.</li>
@@ -1359,7 +1377,7 @@
     const PRODUCTS = [
       {
         id: "rtx-2060s-evga-sc-black", family: "20-series", index: "001",
-        name: "EVGA GeForce RTX 2060 Super SC Black", price: 179,
+        name: "EVGA GeForce RTX 2060 Super SC Black", status: "available", price: 179,
         img: "store/img/rtx2060s-evga.jpg",
         alt: "EVGA GeForce RTX 2060 Super SC Black graphics card, dual fan",
         blurb: "High-refresh 1080p on a 175W budget. The efficient pick for compact builds.",
@@ -1369,7 +1387,7 @@
       },
       {
         id: "rtx-2070s-msi-ventus-oc", family: "20-series", index: "002",
-        name: "MSI GeForce RTX 2070 Super Ventus OC", price: 209,
+        name: "MSI GeForce RTX 2070 Super Ventus OC", status: "available", price: 209,
         img: "store/img/rtx2070s-msi.jpg",
         alt: "MSI GeForce RTX 2070 Super Ventus OC graphics card, dual fan",
         blurb: "1440p capable with headroom. Quiet dual-fan cooler on the proven TU104.",
@@ -1379,7 +1397,7 @@
       },
       {
         id: "rtx-2080s-gigabyte-gaming-oc", family: "20-series", index: "003",
-        name: "Gigabyte GeForce RTX 2080 Super Gaming OC", price: 249,
+        name: "Gigabyte GeForce RTX 2080 Super Gaming OC", status: "available", price: 249,
         img: "store/img/rtx2080s-gigabyte.jpg",
         alt: "Gigabyte GeForce RTX 2080 Super Gaming OC graphics card, triple fan",
         blurb: "Flagship-tier 1440p and high-refresh 1080p. Triple-fan Windforce cooling.",
@@ -1389,7 +1407,7 @@
       },
       {
         id: "rtx-2080ti-evga-ftw3-ultra-hybrid", family: "20-series", index: "005",
-        name: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid", price: 299,
+        name: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid", status: "available", price: 299,
         img: "store/img/rtx2080ti-evga-hybrid.jpg",
         alt: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid graphics card with liquid cooling radiator and retail box",
         blurb: "11GB VRAM with liquid cooling. For heavy workloads that need memory and quiet.",
@@ -1399,7 +1417,7 @@
       },
       {
         id: "rtx-3060ti-gigabyte-eagle-oc", family: "30-series", index: "004",
-        name: "Gigabyte GeForce RTX 3060 Ti Eagle OC", price: 289,
+        name: "Gigabyte GeForce RTX 3060 Ti Eagle OC", status: "available", price: 289,
         img: "store/img/rtx3060ti-gigabyte.png",
         alt: "Gigabyte GeForce RTX 3060 Ti Eagle OC graphics card, dual fan",
         blurb: "Strong 1440p on efficient Ampere. The rational mid-range pick.",
@@ -1409,13 +1427,25 @@
       },
       {
         id: "rtx-3070ti-msi-ventus-3x-oc", family: "30-series", index: "006",
-        name: "MSI GeForce RTX 3070 Ti Ventus 3X OC", price: 339,
+        name: "MSI GeForce RTX 3070 Ti Ventus 3X OC", status: "available", price: 339,
         img: "store/img/rtx3070ti-msi.jpg",
         alt: "MSI GeForce RTX 3070 Ti Ventus 3X OC graphics card, triple fan",
         blurb: "GDDR6X bandwidth for 1440p ultra and entry 4K. Triple-fan Ventus cooling.",
         verdict: "Fastest of the six, hungriest too. Only if you need the bandwidth.",
         specLine: "8GB GDDR6X / 6,144 CUDA / 290W",
         specs: [["Chip", "GA104"], ["CUDA cores", "6,144"], ["Memory", "8GB GDDR6X"], ["Boost clock", "1,830 MHz"], ["Power", "290W, 2x 8-pin"], ["Outputs", "3x DisplayPort, 1x HDMI"]],
+      },
+      {
+        id: "gtx1060-evga-sc", family: "10-series", index: "007",
+        name: "EVGA GeForce GTX 1060 SC GAMING 6GB", status: "sold",
+        img: "store/img/gtx1060-evga-sc.jpg",
+        img2: "store/img/gtx1060-evga-sc-angle.jpg",
+        alt: "EVGA GeForce GTX 1060 SC GAMING 6GB graphics card, single fan",
+        alt2: "EVGA GeForce GTX 1060 SC GAMING 6GB, angled view showing the SC badge",
+        blurb: "Single-fan Pascal on a 120W budget. The efficient 1080p pick, now gone.",
+        verdict: "1080p that sipped power. It ran cool, did its job, and sold in 2026.",
+        specLine: "6GB GDDR5 / 1,280 CUDA / 120W",
+        specs: [["Chip", "GP106"], ["CUDA cores", "1,280"], ["Memory", "6GB GDDR5, 192-bit"], ["Base / boost clock", "1,607 / 1,835 MHz"], ["Memory speed", "8,008 MHz effective, 192.2 GB/s"], ["Power", "120W, 1x 6-pin"], ["Cooler", "Single-fan ACX 2.0"], ["Outputs", "3x DisplayPort 1.4, 1x HDMI 2.0b, 1x Dual-Link DVI-D"], ["Length", "6.8 in, dual slot"], ["PSU minimum", "400W"], ["Part number", "06G-P4-6163-KR"]],
       },
     ];
     const STORE_EMAIL = "shipthisgroup@gmail.com";
@@ -1424,11 +1454,27 @@
     const grid = document.getElementById("store-grid");
     function productCard(p) {
       const el = document.createElement("article");
-      el.className = "product-card";
+      el.className = "product-card" + (p.status === "sold" ? " sold" : "");
+      if (p.status === "sold") {
+        el.innerHTML =
+          '<div class="pc-media" data-open="' + p.id + '" role="button" tabindex="0" aria-label="View ' + p.name + ' details">' +
+            '<img src="' + p.img + '" alt="' + p.alt + '" loading="lazy" decoding="async">' +
+            '<span class="pc-sold-ribbon">Sold</span>' +
+          "</div>" +
+          '<div class="pc-body">' +
+            '<span class="pc-index">№ ' + p.index + "</span>" +
+            "<h3>" + p.name + "</h3>" +
+            '<p class="pc-specs">' + p.specLine + "</p>" +
+            '<p class="pc-verdict">' + p.verdict + "</p>" +
+            '<p class="pc-sold-line">Sold in 2026</p>' +
+            '<button class="pc-detail" data-open="' + p.id + '">Details</button>' +
+          "</div>";
+        return el;
+      }
       el.innerHTML =
-        '<div class="pc-media pc-media--placeholder" data-open="' + p.id + '" role="button" tabindex="0" aria-label="View ' + p.name + ' details">' +
+        '<div class="pc-media" data-open="' + p.id + '" role="button" tabindex="0" aria-label="View ' + p.name + ' details">' +
+          '<div class="pc-media-top"><span class="pc-badge">Limited offer</span><span class="pc-units">1 unit target</span></div>' +
           '<div class="pc-placeholder"><span>Exact photos on request</span></div>' +
-          '<div class="pc-badges"><span class="pc-badge">Limited offer</span><span class="pc-units">1 unit target</span></div>' +
         "</div>" +
         '<div class="pc-body">' +
           '<span class="pc-index">№ ' + p.index + "</span>" +
@@ -1454,7 +1500,7 @@
         lastFamily = p.family;
         const h = document.createElement("div");
         h.className = "pc-family";
-        h.textContent = p.family === "20-series" ? "20-series / Turing" : "30-series / Ampere";
+        h.textContent = p.family === "20-series" ? "20-series / Turing" : p.family === "30-series" ? "30-series / Ampere" : "10-series / Pascal";
         grid.appendChild(h);
       }
       grid.appendChild(productCard(p));
@@ -1464,16 +1510,34 @@
     function openProduct(id, push) {
       const p = PRODUCTS.find((x) => x.id === id);
       if (!p) return;
-      document.getElementById("ps-img").style.display = "none";
-      document.getElementById("ps-img").alt = "";
-      document.getElementById("ps-index").textContent = "№ " + p.index + " / LIMITED OFFER / 1 UNIT";
+      const sold = p.status === "sold";
+      document.getElementById("ps-index").textContent = "№ " + p.index + (sold ? " / SOLD" : " / 1 UNIT");
       document.getElementById("ps-name").textContent = p.name;
       document.getElementById("ps-blurb").textContent = p.blurb;
-      document.getElementById("ps-price").textContent = money(p.price);
       document.getElementById("ps-specs").innerHTML = p.specs.map((s) => "<tr><th>" + s[0] + "</th><td>" + s[1] + "</td></tr>").join("");
-      document.getElementById("ps-terms").innerHTML = "<strong>Used card, condition confirmed on request.</strong> Target price shown. Final price, exact condition, and shipping cost are confirmed after you request, before anything is agreed. Optional burn-in test available on request.";
+      const priceRow = document.querySelector(".ps-price-row");
       const reserveBtn = document.getElementById("ps-reserve");
-      reserveBtn.onclick = (e) => { lastReserveTrigger = e.currentTarget; closeProduct(false); openReserve(p.id); };
+      const soldBox = document.getElementById("ps-sold");
+      const photosBox = document.getElementById("ps-photos");
+      if (sold) {
+        priceRow.hidden = true;
+        reserveBtn.hidden = true;
+        reserveBtn.onclick = null;
+        soldBox.hidden = false;
+        photosBox.hidden = false;
+        photosBox.innerHTML = '<img src="' + p.img + '" alt="' + p.alt + '" loading="lazy" decoding="async">' +
+          (p.img2 ? '<img src="' + p.img2 + '" alt="' + (p.alt2 || p.alt) + '" loading="lazy" decoding="async">' : "");
+        document.getElementById("ps-terms").textContent = "This record stays up so you can see what moved.";
+      } else {
+        priceRow.hidden = false;
+        reserveBtn.hidden = false;
+        soldBox.hidden = true;
+        photosBox.hidden = true;
+        photosBox.innerHTML = "";
+        document.getElementById("ps-price").textContent = money(p.price);
+        document.getElementById("ps-terms").innerHTML = "<strong>Used card, condition confirmed on request.</strong> Target price shown. Final price, exact condition, and shipping cost are confirmed after you request, before anything is agreed. Optional burn-in test available on request.";
+        reserveBtn.onclick = (e) => { lastReserveTrigger = e.currentTarget; closeProduct(false); openReserve(p.id); };
+      }
       overlay.hidden = false;
       document.body.style.overflow = "hidden";
       if (push !== false) history.replaceState(null, "", "#/offer/" + id);
@@ -1495,10 +1559,8 @@
     let reserveProduct = null;
     function openReserve(id) {
       const p = PRODUCTS.find((x) => x.id === id);
-      if (!p) return;
+      if (!p || p.status === "sold") return;
       reserveProduct = p;
-      document.getElementById("rd-img").style.display = "none";
-      document.getElementById("rd-img").alt = "";
       document.getElementById("rd-name").textContent = p.name;
       document.getElementById("rd-price").textContent = money(p.price) + " target price";
       document.getElementById("rd-error").textContent = "";
@@ -1556,7 +1618,7 @@
       if (reserveBtn) { lastReserveTrigger = reserveBtn; openReserve(reserveBtn.getAttribute("data-reserve")); }
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && e.target.matches && e.target.matches("[data-open]")) openProduct(e.target.getAttribute("data-open"));
+      if (e.key === "Enter" && e.target.matches && e.target.matches("[data-open]")) { e.preventDefault(); lastProductTrigger = e.target; openProduct(e.target.getAttribute("data-open")); }
       if (e.key === "Escape") { if (!drawer.hidden) closeReserve(); else if (!overlay.hidden) closeProduct(); }
     });
     window.addEventListener("hashchange", () => {

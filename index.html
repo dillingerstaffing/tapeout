@@ -22,7 +22,7 @@
       if (scheme) scheme.setAttribute('content', t === 'classic' ? 'dark' : 'light');
     })();
   </script>
-  <meta name="build-version" content="v20260923-tapeout-1500">
+  <meta name="build-version" content="v20260923-tapeout-1530">
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ece6d5'/%3E%3Crect x='19' y='19' width='26' height='26' fill='none' stroke='%23241f17' stroke-width='2'/%3E%3Crect x='26' y='26' width='12' height='12' fill='none' stroke='%23241f17' stroke-width='1'/%3E%3Crect x='21' y='13' width='2' height='7' fill='%238c3f22'/%3E%3Crect x='27' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='21' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='27' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='13' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='39' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='39' width='7' height='2' fill='%23241f17'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -181,6 +181,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
   <style>
     :root {
+      --paper: #f4efe0;
       --ink: #f2f0ea;
       --muted: #9b9d98;
       --line: #313331;
@@ -782,9 +783,10 @@
   overflow: hidden;
   cursor: pointer;
 }
+.product-card:hover { border-color: var(--ink); }
 .pc-media img {
-  width: 82%;
-  height: 82%;
+  width: 86%;
+  height: 86%;
   object-fit: contain;
   display: block;
 }
@@ -806,6 +808,7 @@
   color: var(--paper);
   padding: 5px 9px;
 }
+[data-theme="classic"] .pc-badge { color: #090a0a; }
 .pc-units { color: var(--muted); padding: 5px 0; }
 .pc-body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .pc-index { font: 500 11px/1.2 "IBM Plex Mono", monospace; letter-spacing: .1em; color: var(--signal); }
@@ -1421,16 +1424,19 @@
       document.getElementById("ps-specs").innerHTML = p.specs.map((s) => "<tr><th>" + s[0] + "</th><td>" + s[1] + "</td></tr>").join("");
       document.getElementById("ps-terms").innerHTML = "<strong>Used, verified working.</strong> Every unit is inspected, cleaned, and burn-in tested before it ships. Includes the card, a signed burn-in result record, and anti-static packaging. Free insured shipping. Sourced to order: if we cannot secure this unit within 7 days, you get a full refund.";
       const reserveBtn = document.getElementById("ps-reserve");
-      reserveBtn.onclick = () => { closeProduct(false); openReserve(p.id); };
+      reserveBtn.onclick = (e) => { lastReserveTrigger = e.currentTarget; closeProduct(false); openReserve(p.id); };
       overlay.hidden = false;
       document.body.style.overflow = "hidden";
       if (push !== false) history.replaceState(null, "", "#/offer/" + id);
       document.getElementById("ps-close").focus();
     }
+    let lastProductTrigger = null;
     function closeProduct(restore) {
       overlay.hidden = true;
       document.body.style.overflow = "";
       if (restore !== false && location.hash.startsWith("#/offer/")) history.replaceState(null, "", "#store");
+      if (lastProductTrigger && document.contains(lastProductTrigger)) lastProductTrigger.focus();
+      lastProductTrigger = null;
     }
     document.getElementById("ps-close").addEventListener("click", () => closeProduct());
     overlay.addEventListener("click", (e) => { if (e.target === overlay) closeProduct(); });
@@ -1453,10 +1459,13 @@
       document.body.style.overflow = "hidden";
       document.getElementById("rd-email").focus();
     }
+    let lastReserveTrigger = null;
     function closeReserve() {
       scrim.hidden = true;
       drawer.hidden = true;
       if (overlay.hidden) document.body.style.overflow = "";
+      if (lastReserveTrigger && document.contains(lastReserveTrigger)) lastReserveTrigger.focus();
+      lastReserveTrigger = null;
     }
     document.getElementById("rd-close").addEventListener("click", closeReserve);
     scrim.addEventListener("click", closeReserve);
@@ -1493,9 +1502,9 @@
 
     document.addEventListener("click", (e) => {
       const openBtn = e.target.closest("[data-open]");
-      if (openBtn) { openProduct(openBtn.getAttribute("data-open")); return; }
+      if (openBtn) { lastProductTrigger = openBtn; openProduct(openBtn.getAttribute("data-open")); return; }
       const reserveBtn = e.target.closest("[data-reserve]");
-      if (reserveBtn) { openReserve(reserveBtn.getAttribute("data-reserve")); }
+      if (reserveBtn) { lastReserveTrigger = reserveBtn; openReserve(reserveBtn.getAttribute("data-reserve")); }
     });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && e.target.matches && e.target.matches("[data-open]")) openProduct(e.target.getAttribute("data-open"));

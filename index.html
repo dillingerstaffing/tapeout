@@ -22,7 +22,7 @@
       if (scheme) scheme.setAttribute('content', t === 'classic' ? 'dark' : 'light');
     })();
   </script>
-  <meta name="build-version" content="v20260922-tapeout-1055">
+  <meta name="build-version" content="v20260923-tapeout-1500">
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ece6d5'/%3E%3Crect x='19' y='19' width='26' height='26' fill='none' stroke='%23241f17' stroke-width='2'/%3E%3Crect x='26' y='26' width='12' height='12' fill='none' stroke='%23241f17' stroke-width='1'/%3E%3Crect x='21' y='13' width='2' height='7' fill='%238c3f22'/%3E%3Crect x='27' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='21' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='27' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='13' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='39' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='39' width='7' height='2' fill='%23241f17'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -755,6 +755,217 @@
       a { text-decoration: underline; }
       .skip-link, .theme-toggle { display: none !important; }
     }
+  /* ============ STORE v1 ============ */
+[hidden] { display: none !important; }
+#store { padding: 96px 0 24px; }
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 44px;
+}
+.product-card {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.pc-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+.pc-media img {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  display: block;
+}
+.pc-badges {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+.pc-badge, .pc-units {
+  font: 500 10px/1.4 "IBM Plex Mono", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.pc-badge {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 5px 9px;
+}
+.pc-units { color: var(--muted); padding: 5px 0; }
+.pc-body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.pc-index { font: 500 11px/1.2 "IBM Plex Mono", monospace; letter-spacing: .1em; color: var(--signal); }
+.pc-body h3 { font-family: "Barlow Condensed", sans-serif; font-size: 26px; font-weight: 600; line-height: 1.05; margin: 0; letter-spacing: .01em; }
+.pc-specs { font: 400 12.5px/1.6 "IBM Plex Mono", monospace; color: var(--muted); margin: 0; }
+.pc-row { display: flex; align-items: baseline; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
+.pc-price { font: 500 24px/1 "IBM Plex Mono", monospace; }
+.pc-ship { font: 400 11px/1.4 "IBM Plex Mono", monospace; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.pc-actions { display: flex; gap: 10px; margin-top: 4px; }
+.pc-reserve {
+  flex: 1;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 13px 16px;
+  font: 600 13px/1.2 "IBM Plex Mono", monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.pc-reserve:hover { background: var(--acid); border-color: var(--acid); }
+.pc-detail {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 13px 16px;
+  font: 500 13px/1.2 "IBM Plex Mono", monospace;
+  letter-spacing: .06em;
+  cursor: pointer;
+}
+.pc-detail:hover { color: var(--ink); border-color: var(--ink); }
+.store-note { margin-top: 26px; font: 400 13px/1.7 "IBM Plex Mono", monospace; color: var(--muted); max-width: 72ch; }
+.store-note strong { color: var(--ink); font-weight: 500; }
+
+/* How presale works */
+#how { padding: 72px 0 24px; }
+.how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 44px; }
+.how-step { border-top: 2px solid var(--ink); padding-top: 18px; }
+.how-step .how-no { font: 500 11px/1.2 "IBM Plex Mono", monospace; letter-spacing: .12em; color: var(--signal); }
+.how-step h3 { font-family: "Barlow Condensed", sans-serif; font-size: 24px; font-weight: 600; margin: 10px 0 8px; }
+.how-step p { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.65; }
+
+/* Product overlay */
+.product-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(9,10,10,.72);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+[data-theme="notebook"] .product-overlay { background: rgba(36,31,23,.55); }
+.product-sheet {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  width: min(1020px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.ps-media { background: var(--paper); border-right: 1px solid var(--line); display: flex; align-items: center; justify-content: center; padding: 40px; min-height: 420px; }
+.ps-media img { width: 100%; height: auto; object-fit: contain; }
+.ps-body { padding: 36px 36px 32px; }
+.ps-close {
+  float: right; background: transparent; border: 1px solid var(--line); color: var(--muted);
+  width: 38px; height: 38px; font-size: 18px; cursor: pointer; line-height: 1;
+}
+.ps-close:hover { color: var(--ink); border-color: var(--ink); }
+.ps-index { font: 500 11px/1.2 "IBM Plex Mono", monospace; letter-spacing: .12em; color: var(--signal); }
+.ps-body h2 { font-family: "Barlow Condensed", sans-serif; font-size: 40px; font-weight: 600; line-height: 1; margin: 10px 0 6px; }
+.ps-blurb { color: var(--muted); font-size: 15px; line-height: 1.65; margin: 0 0 18px; }
+.ps-price-row { display: flex; align-items: baseline; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.ps-price { font: 500 34px/1 "IBM Plex Mono", monospace; }
+.ps-price-note { font: 400 11.5px/1.5 "IBM Plex Mono", monospace; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
+.spec-table { width: 100%; border-collapse: collapse; margin: 18px 0; }
+.spec-table th, .spec-table td { text-align: left; padding: 9px 0; border-bottom: 1px solid var(--line); font: 400 13px/1.5 "IBM Plex Mono", monospace; vertical-align: top; }
+.spec-table th { color: var(--muted); font-weight: 400; width: 42%; padding-right: 16px; }
+.ps-terms { border: 1px solid var(--line); padding: 16px 18px; margin: 0 0 20px; font-size: 13.5px; line-height: 1.7; color: var(--muted); }
+.ps-terms strong { color: var(--ink); font-weight: 600; }
+.ps-reserve {
+  width: 100%; background: var(--ink); color: var(--paper); border: 1px solid var(--ink);
+  padding: 16px; font: 600 14px/1.2 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+}
+.ps-reserve:hover { background: var(--acid); border-color: var(--acid); }
+
+/* Reserve drawer */
+.reserve-scrim { position: fixed; inset: 0; z-index: 300; background: rgba(9,10,10,.6); }
+[data-theme="notebook"] .reserve-scrim { background: rgba(36,31,23,.5); }
+.reserve-drawer {
+  position: fixed; z-index: 301; right: 0; top: 0; bottom: 0;
+  width: min(460px, 100%);
+  background: var(--bg); border-left: 1px solid var(--line);
+  padding: 32px 30px; overflow: auto;
+}
+.rd-close { float: right; background: transparent; border: 1px solid var(--line); color: var(--muted); width: 38px; height: 38px; font-size: 18px; cursor: pointer; }
+.rd-close:hover { color: var(--ink); border-color: var(--ink); }
+.reserve-drawer h2 { font-family: "Barlow Condensed", sans-serif; font-size: 32px; font-weight: 600; margin: 8px 0 4px; }
+.rd-sub { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
+.rd-item { display: flex; gap: 14px; border: 1px solid var(--line); padding: 12px; margin-bottom: 20px; align-items: center; }
+.rd-item img { width: 84px; height: 64px; object-fit: contain; background: var(--paper); }
+.rd-item .rd-name { font-weight: 600; font-size: 14px; }
+.rd-item .rd-price { font: 500 15px/1.4 "IBM Plex Mono", monospace; }
+.rd-steps { list-style: none; margin: 0 0 20px; padding: 0; }
+.rd-steps li { font-size: 13.5px; line-height: 1.6; color: var(--muted); padding: 8px 0 8px 28px; position: relative; border-bottom: 1px solid var(--line); }
+.rd-steps li::before { content: attr(data-n); position: absolute; left: 0; font: 500 11px/1.8 "IBM Plex Mono", monospace; color: var(--signal); }
+.rd-field { margin-bottom: 16px; }
+.rd-field label { display: block; font: 500 11px/1.4 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.rd-field input[type="email"] { width: 100%; background: var(--panel); border: 1px solid var(--line); color: var(--ink); padding: 13px 14px; font-size: 15px; }
+.rd-terms { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.6; color: var(--muted); margin: 4px 0 20px; }
+.rd-terms input { margin-top: 4px; accent-color: var(--signal); width: 16px; height: 16px; flex: none; }
+.rd-terms strong { color: var(--ink); }
+.rd-submit {
+  width: 100%; background: var(--ink); color: var(--paper); border: 1px solid var(--ink);
+  padding: 16px; font: 600 14px/1.2 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; margin-bottom: 12px;
+}
+.rd-submit:hover { background: var(--acid); border-color: var(--acid); }
+.rd-submit:disabled { opacity: .45; cursor: not-allowed; }
+.rd-mailways { display: none; border: 1px solid var(--line); padding: 16px; }
+.rd-mailways.open { display: block; }
+.rd-mailways p { margin: 0 0 12px; font-size: 13px; color: var(--muted); }
+.rd-mailways .contact-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.rd-error { color: var(--signal); font-size: 13px; min-height: 20px; margin: 0 0 8px; }
+
+@media (max-width: 960px) {
+  .store-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .how-steps { grid-template-columns: 1fr; gap: 22px; }
+  .product-sheet { grid-template-columns: 1fr; }
+  .ps-media { border-right: 0; border-bottom: 1px solid var(--line); min-height: 0; padding: 28px; }
+}
+@media (max-width: 620px) {
+  #store { padding: 64px 0 16px; }
+  .store-grid { grid-template-columns: 1fr; }
+  .reserve-drawer { top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 92vh; border-left: 0; border-top: 1px solid var(--line); }
+  .ps-body h2 { font-size: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-reserve, .pc-detail, .ps-reserve, .rd-submit { transition: none; }
+}
+.ps-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.ps-close, .rd-close { float: none; flex: none; }
+.ps-media { padding: 28px; }
+.offer-ledger {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line); border-bottom: 0; margin-top: 44px;
+}
+.offer-ledger div { padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.offer-ledger div + div { border-left: 1px solid var(--line); }
+.offer-ledger span { display: block; font: 400 10.5px/1.4 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.offer-ledger strong { font: 500 20px/1 "IBM Plex Mono", monospace; font-weight: 500; }
+.store-grid { margin-top: 0; border: 1px solid var(--line); border-top: 0; padding: 28px; gap: 28px; background: transparent; }
+@media (max-width: 960px) {
+  .offer-ledger { grid-template-columns: repeat(2, 1fr); }
+  .offer-ledger div:nth-child(3) { border-left: 0; }
+  .store-grid { padding: 18px; }
+}
+@media (max-width: 620px) {
+  .offer-ledger { grid-template-columns: repeat(2, 1fr); margin-top: 32px; }
+  .offer-ledger div { padding: 12px 14px; }
+}
+/* ============ /STORE v1 ============ */
+
   </style>
 </head>
 <body>
@@ -762,6 +973,7 @@
   <header class="shell rail">
     <div class="signal mono"><i class="pulse" aria-hidden="true"></i><span>Quote desk open</span><span>Curated compute supply</span></div>
     <nav aria-label="Primary navigation">
+      <a href="#store">Limited offers</a>
       <a href="#supply">Supply</a>
       <a href="#lab">Lab</a>
       <a href="#quote">Request quote</a>
@@ -774,15 +986,15 @@
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">GPUs / accelerators / compute parts</p>
-        <h1 id="hero-title" aria-label="Compute parts, sourced with discipline.">
-          <span class="headline-line" aria-hidden="true"><span>Compute</span></span>
-          <span class="headline-line" aria-hidden="true"><span>parts, sourced</span></span>
-          <span class="headline-line" aria-hidden="true"><span>with discipline.</span></span>
+        <p class="eyebrow">GPUs / verified / sourced to order</p>
+        <h1 id="hero-title" aria-label="Verified GPUs, one unit at a time.">
+          <span class="headline-line" aria-hidden="true"><span>Verified GPUs,</span></span>
+          <span class="headline-line" aria-hidden="true"><span>one unit</span></span>
+          <span class="headline-line" aria-hidden="true"><span>at a time.</span></span>
         </h1>
-        <p class="lede">Hardware for AI labs, builders, and researchers. Every unit we supply passes burn-in testing before it ships.</p>
+        <p class="lede">Limited offers on graphics cards, sourced to order. Reserve a unit and we secure the exact card, run it through burn-in, and ship it.</p>
         <div class="hero-actions">
-          <a class="primary" href="#quote">Request a quote
+          <a class="primary" href="#store">Browse limited offers
             <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
           </a>
           <div class="contact-options" role="group" aria-label="Contact options">
@@ -798,9 +1010,40 @@
       <div class="hero-art">
         <img src="hero.jpg" alt="Technical illustration of an exposed graphics card test platform with heatsink and test leads" width="1600" height="1000" loading="eager" decoding="async" fetchpriority="high">
         <div class="telemetry" role="group" aria-label="Service facts">
-          <div><span>Inventory</span><strong>Quote based</strong></div>
+          <div><span>Offers</span><strong>Limited, to order</strong></div>
           <div><span>Validation</span><strong>Burn-in</strong></div>
           <div><span>Focus</span><strong>Compute</strong></div>
+        </div>
+      </div>
+    </section>
+
+        <section id="store" aria-labelledby="store-title">
+      <div class="shell">
+        <div class="section-head">
+          <span class="section-no">01 / LIMITED OFFERS</span>
+          <div><h2 id="store-title">One unit each. Verified before it ships.</h2><p class="section-intro">Every offer is a single card at a fixed price, sourced to order. Reserve it and we secure the exact unit, run it through burn-in, and ship it. If we cannot secure it, you get a full refund.</p></div>
+        </div>
+        <div class="offer-ledger" aria-label="Offer summary">
+          <div><span>Active offers</span><strong>06</strong></div>
+          <div><span>Units per offer</span><strong>01</strong></div>
+          <div><span>Sourcing</span><strong>To order</strong></div>
+          <div><span>Verification</span><strong>Burn-in</strong></div>
+        </div>
+        <div class="store-grid" id="store-grid"></div>
+        <p class="store-note"><strong>Sourced to order, not stockpiled.</strong> We do not warehouse cards on speculation. Each offer is a verified opportunity: one card, one price. Your reserve holds it for 48 hours while we confirm. Nothing ships until it passes burn-in.</p>
+      </div>
+    </section>
+
+    <section id="how" aria-labelledby="how-title">
+      <div class="shell">
+        <div class="section-head">
+          <span class="section-no">02 / HOW PRESALE WORKS</span>
+          <div><h2 id="how-title">Reserve. We verify. It ships.</h2><p class="section-intro">No inventory, no guessing. The card you see is the card class you get, tested before it leaves.</p></div>
+        </div>
+        <div class="how-steps">
+          <div class="how-step"><span class="how-no">STEP 01</span><h3>You reserve the unit</h3><p>Send a reserve request. You pay nothing yet. The offer is held for you for 48 hours while we confirm the unit.</p></div>
+          <div class="how-step"><span class="how-no">STEP 02</span><h3>We secure and verify it</h3><p>We acquire the exact card, inspect it, clean it, and run the full burn-in: sustained load, thermals, fault check. You get the signed result record.</p></div>
+          <div class="how-step"><span class="how-no">STEP 03</span><h3>It ships, or full refund</h3><p>Verified cards ship free and insured. If we cannot secure your unit within 7 days, you get a full refund. No questions, no store credit.</p></div>
         </div>
       </div>
     </section>
@@ -808,7 +1051,7 @@
     <section id="supply">
       <div class="shell">
         <div class="section-head">
-          <span class="section-no">01 / SUPPLY</span>
+          <span class="section-no">03 / SUPPLY</span>
           <div><h2>Specify the workload. We source the hardware.</h2><p class="section-intro">No stale catalog. No invented stock count. Tell us the target workload, quantity, platform, and deadline. We return a quote built around it.</p></div>
         </div>
         <div class="offer-grid">
@@ -874,7 +1117,7 @@
     <section id="lab">
       <div class="shell">
         <div class="section-head">
-          <span class="section-no">02 / OPEN LAB</span>
+          <span class="section-no">04 / OPEN LAB</span>
           <div><h2>Distribution now. Hardware R&amp;D in the open.</h2><p class="section-intro">TAPEOUT starts with distribution: sourcing, validation, and supply. In parallel, the open lab studies the validation platform behind that work.</p></div>
         </div>
         <div class="lab-grid">
@@ -923,7 +1166,7 @@
     <section id="quote">
       <div class="shell">
         <div class="section-head">
-          <span class="section-no">03 / QUOTE</span>
+          <span class="section-no">05 / QUOTE</span>
           <div><h2>Send the requirement.</h2><p class="section-intro">Give us enough detail to source against the workload. The form opens a prepared email in your mail app.</p></div>
         </div>
         <div class="quote-faq" role="group" aria-labelledby="quote-faq-question">
@@ -967,8 +1210,8 @@
           <p>You describe your workload, target hardware, quantity, and timeline; we reply with a sourced quote; every part runs burn-in testing before anything ships.</p>
         </div>
         <div class="quote-faq" role="group" aria-labelledby="pricing-faq-question">
-          <h3 id="pricing-faq-question">Why aren't prices listed on the site?</h3>
-          <p>Pricing moves too fast to list honestly. Every quote is built from current sourcing for your exact list; nothing is priced from stale inventory.</p>
+          <h3 id="pricing-faq-question">Why do limited offers have prices but services do not?</h3>
+          <p>Limited offers are single verified opportunities, so each carries a fixed price. Custom sourcing and services are still quote based: every quote is built from current sourcing for your exact list.</p>
         </div>
         <div class="quote-faq" role="group" aria-labelledby="included-faq-question">
           <h3 id="included-faq-question">What does the quote include?</h3>
@@ -1025,6 +1268,50 @@
       </div>
     </section>
   </main>
+    <div class="product-overlay" id="product-overlay" hidden>
+      <div class="product-sheet" role="dialog" aria-modal="true" aria-labelledby="ps-name">
+        <div class="ps-media"><img id="ps-img" alt=""></div>
+        <div class="ps-body">
+          <div class="ps-top"><span class="ps-index" id="ps-index"></span><button class="ps-close" id="ps-close" aria-label="Close product details">&times;</button></div>
+          <h2 id="ps-name"></h2>
+          <p class="ps-blurb" id="ps-blurb"></p>
+          <div class="ps-price-row"><span class="ps-price" id="ps-price"></span><span class="ps-price-note">Free insured shipping<br>Burn-in verified</span></div>
+          <table class="spec-table" id="ps-specs"></table>
+          <p class="ps-terms" id="ps-terms"></p>
+          <button class="ps-reserve" id="ps-reserve">Reserve this unit</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="reserve-scrim" id="reserve-scrim" hidden></div>
+    <aside class="reserve-drawer" id="reserve-drawer" hidden aria-labelledby="rd-title">
+      <div class="ps-top"><span class="ps-index">RESERVE</span><button class="rd-close" id="rd-close" aria-label="Close reservation">&times;</button></div>
+      <h2 id="rd-title">Hold this unit</h2>
+      <p class="rd-sub">You pay nothing yet. We confirm within 48 hours.</p>
+      <div class="rd-item"><img id="rd-img" alt=""><div><div class="rd-name" id="rd-name"></div><div class="rd-price" id="rd-price"></div></div></div>
+      <ol class="rd-steps">
+        <li data-n="01">You send the reserve request below.</li>
+        <li data-n="02">We secure the exact card and run burn-in.</li>
+        <li data-n="03">We reply with payment details. The card ships after it passes.</li>
+      </ol>
+      <div class="rd-field">
+        <label for="rd-email">Your email</label>
+        <input type="email" id="rd-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <label class="rd-terms"><input type="checkbox" id="rd-terms"><span><strong>Sourced to order.</strong> I understand this unit is secured after I reserve. If TAPEOUT cannot secure it within 7 days, I get a full refund.</span></label>
+      <p class="rd-error" id="rd-error" role="status" aria-live="polite"></p>
+      <button class="rd-submit" id="rd-submit">Request this unit</button>
+      <div class="rd-mailways" id="rd-mailways">
+        <p>Send the reserve request from your own mail app. Your sent copy is the receipt.</p>
+        <div class="contact-options" role="group" aria-label="Send reserve request">
+          <a class="contact-action" id="rd-gmail" href="#" target="_blank" rel="noopener noreferrer">Open in Gmail</a>
+          <a class="contact-action" id="rd-mailto" href="#">Email app</a>
+          <button class="contact-action" type="button" id="rd-copy">Copy request</button>
+          <span class="contact-status" id="rd-copy-status" role="status" aria-live="polite"></span>
+        </div>
+      </div>
+    </aside>
+
 
   <footer class="shell">
     <span>TAPEOUT / COMPUTE HARDWARE</span>
@@ -1039,7 +1326,194 @@
     <span class="elsewhere">Elsewhere: <a href="https://dillingerstaffing.github.io/portfolio/" target="_blank" rel="noopener noreferrer">Portfolio <span aria-hidden="true">↗</span></a> <span aria-hidden="true">·</span> <a href="https://dillingerstaffing.github.io/proving-ground/" target="_blank" rel="noopener noreferrer">Proving Ground <span aria-hidden="true">↗</span></a> <span aria-hidden="true">·</span> <a href="https://dillingerstaffing.github.io/old-iron/" target="_blank" rel="noopener noreferrer">Old Iron <span aria-hidden="true">↗</span></a> <span aria-hidden="true">·</span> <a href="https://dillingerstaffing.github.io/unstuck/" target="_blank" rel="noopener noreferrer">Unstuck <span aria-hidden="true">↗</span></a> <span aria-hidden="true">·</span> <a href="https://dillingerstaffing.github.io/ghostlight/" target="_blank" rel="noopener noreferrer">Ghostlight <span aria-hidden="true">↗</span></a></span>
   </footer>
 
-  <script>
+    <script>
+    /* ============ STORE v1 ============ */
+    const PRODUCTS = [
+      {
+        id: "rtx-2060s-evga-sc-black", index: "001",
+        name: "EVGA GeForce RTX 2060 Super SC Black", price: 179,
+        img: "store/img/rtx2060s-evga.jpg",
+        alt: "EVGA GeForce RTX 2060 Super SC Black graphics card, dual fan",
+        blurb: "High-refresh 1080p on a 175W budget. The efficient pick for compact builds.",
+        specLine: "8GB GDDR6 / 2,176 CUDA / 175W",
+        specs: [["Chip", "TU106"], ["CUDA cores", "2,176"], ["Memory", "8GB GDDR6"], ["Boost clock", "1,650 MHz"], ["Power", "175W, 1x 8-pin"], ["Outputs", "3x DisplayPort, 1x HDMI"]],
+      },
+      {
+        id: "rtx-2070s-msi-ventus-oc", index: "002",
+        name: "MSI GeForce RTX 2070 Super Ventus OC", price: 209,
+        img: "store/img/rtx2070s-msi.jpg",
+        alt: "MSI GeForce RTX 2070 Super Ventus OC graphics card, dual fan",
+        blurb: "1440p capable with headroom. Quiet dual-fan cooler on the proven TU104.",
+        specLine: "8GB GDDR6 / 2,560 CUDA / 215W",
+        specs: [["Chip", "TU104"], ["CUDA cores", "2,560"], ["Memory", "8GB GDDR6"], ["Boost clock", "1,770 MHz"], ["Power", "215W, 1x 8-pin + 1x 6-pin"], ["Outputs", "3x DisplayPort, 1x HDMI"]],
+      },
+      {
+        id: "rtx-2080s-gigabyte-gaming-oc", index: "003",
+        name: "Gigabyte GeForce RTX 2080 Super Gaming OC", price: 249,
+        img: "store/img/rtx2080s-gigabyte.jpg",
+        alt: "Gigabyte GeForce RTX 2080 Super Gaming OC graphics card, triple fan",
+        blurb: "Flagship-tier 1440p and high-refresh 1080p. Triple-fan Windforce cooling.",
+        specLine: "8GB GDDR6 / 3,072 CUDA / 250W",
+        specs: [["Chip", "TU104"], ["CUDA cores", "3,072"], ["Memory", "8GB GDDR6"], ["Boost clock", "1,845 MHz"], ["Power", "250W, 1x 8-pin + 1x 6-pin"], ["Outputs", "3x DisplayPort, 1x HDMI, 1x USB-C"]],
+      },
+      {
+        id: "rtx-3060ti-gigabyte-eagle-oc", index: "004",
+        name: "Gigabyte GeForce RTX 3060 Ti Eagle OC", price: 289,
+        img: "store/img/rtx3060ti-gigabyte.png",
+        alt: "Gigabyte GeForce RTX 3060 Ti Eagle OC graphics card, dual fan",
+        blurb: "Strong 1440p on efficient Ampere. The rational mid-range pick.",
+        specLine: "8GB GDDR6 / 4,864 CUDA / 200W",
+        specs: [["Chip", "GA104"], ["CUDA cores", "4,864"], ["Memory", "8GB GDDR6"], ["Boost clock", "1,695 MHz"], ["Power", "200W, 1x 8-pin"], ["Outputs", "2x DisplayPort, 2x HDMI"]],
+      },
+      {
+        id: "rtx-2080ti-evga-ftw3-ultra-hybrid", index: "005",
+        name: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid", price: 299,
+        img: "store/img/rtx2080ti-evga-hybrid.jpg",
+        alt: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid graphics card with liquid cooling radiator and retail box",
+        blurb: "11GB VRAM with liquid cooling. For heavy workloads that need memory and quiet.",
+        specLine: "11GB GDDR6 / 4,352 CUDA / liquid cooled",
+        specs: [["Chip", "TU102"], ["CUDA cores", "4,352"], ["Memory", "11GB GDDR6"], ["Boost clock", "1,755 MHz"], ["Power", "250W+, 2x 8-pin + 1x 6-pin"], ["Outputs", "3x DisplayPort, 1x HDMI, 1x USB-C"]],
+      },
+      {
+        id: "rtx-3070ti-msi-ventus-3x-oc", index: "006",
+        name: "MSI GeForce RTX 3070 Ti Ventus 3X OC", price: 339,
+        img: "store/img/rtx3070ti-msi.jpg",
+        alt: "MSI GeForce RTX 3070 Ti Ventus 3X OC graphics card, triple fan",
+        blurb: "GDDR6X bandwidth for 1440p ultra and entry 4K. Triple-fan Ventus cooling.",
+        specLine: "8GB GDDR6X / 6,144 CUDA / 290W",
+        specs: [["Chip", "GA104"], ["CUDA cores", "6,144"], ["Memory", "8GB GDDR6X"], ["Boost clock", "1,830 MHz"], ["Power", "290W, 2x 8-pin"], ["Outputs", "3x DisplayPort, 1x HDMI"]],
+      },
+    ];
+    const STORE_EMAIL = "shipthisgroup@gmail.com";
+    const money = (n) => "$" + n;
+
+    const grid = document.getElementById("store-grid");
+    function productCard(p) {
+      const el = document.createElement("article");
+      el.className = "product-card";
+      el.innerHTML =
+        '<div class="pc-media" data-open="' + p.id + '" role="button" tabindex="0" aria-label="View ' + p.name + ' details">' +
+          "<img src=\"" + p.img + "\" alt=\"" + p.alt + "\" loading=\"lazy\" decoding=\"async\">" +
+          '<div class="pc-badges"><span class="pc-badge">Limited offer</span><span class="pc-units">1 unit</span></div>' +
+        "</div>" +
+        '<div class="pc-body">' +
+          '<span class="pc-index">№ ' + p.index + "</span>" +
+          "<h3>" + p.name + "</h3>" +
+          '<p class="pc-specs">' + p.specLine + "</p>" +
+          '<div class="pc-row"><span class="pc-price">' + money(p.price) + '</span><span class="pc-ship">Free shipping</span></div>' +
+          '<div class="pc-actions"><button class="pc-reserve" data-reserve="' + p.id + '">Reserve</button>' +
+          '<button class="pc-detail" data-open="' + p.id + '">Details</button></div>' +
+        "</div>";
+      return el;
+    }
+    PRODUCTS.forEach((p) => grid.appendChild(productCard(p)));
+
+    const overlay = document.getElementById("product-overlay");
+    function openProduct(id, push) {
+      const p = PRODUCTS.find((x) => x.id === id);
+      if (!p) return;
+      document.getElementById("ps-img").src = p.img;
+      document.getElementById("ps-img").alt = p.alt;
+      document.getElementById("ps-index").textContent = "№ " + p.index + " / LIMITED OFFER / 1 UNIT";
+      document.getElementById("ps-name").textContent = p.name;
+      document.getElementById("ps-blurb").textContent = p.blurb;
+      document.getElementById("ps-price").textContent = money(p.price);
+      document.getElementById("ps-specs").innerHTML = p.specs.map((s) => "<tr><th>" + s[0] + "</th><td>" + s[1] + "</td></tr>").join("");
+      document.getElementById("ps-terms").innerHTML = "<strong>Used, verified working.</strong> Every unit is inspected, cleaned, and burn-in tested before it ships. Includes the card, a signed burn-in result record, and anti-static packaging. Free insured shipping. Sourced to order: if we cannot secure this unit within 7 days, you get a full refund.";
+      const reserveBtn = document.getElementById("ps-reserve");
+      reserveBtn.onclick = () => { closeProduct(false); openReserve(p.id); };
+      overlay.hidden = false;
+      document.body.style.overflow = "hidden";
+      if (push !== false) history.replaceState(null, "", "#/offer/" + id);
+      document.getElementById("ps-close").focus();
+    }
+    function closeProduct(restore) {
+      overlay.hidden = true;
+      document.body.style.overflow = "";
+      if (restore !== false && location.hash.startsWith("#/offer/")) history.replaceState(null, "", "#store");
+    }
+    document.getElementById("ps-close").addEventListener("click", () => closeProduct());
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeProduct(); });
+
+    const scrim = document.getElementById("reserve-scrim");
+    const drawer = document.getElementById("reserve-drawer");
+    let reserveProduct = null;
+    function openReserve(id) {
+      const p = PRODUCTS.find((x) => x.id === id);
+      if (!p) return;
+      reserveProduct = p;
+      document.getElementById("rd-img").src = p.img;
+      document.getElementById("rd-img").alt = p.alt;
+      document.getElementById("rd-name").textContent = p.name;
+      document.getElementById("rd-price").textContent = money(p.price) + " / free shipping";
+      document.getElementById("rd-error").textContent = "";
+      document.getElementById("rd-mailways").classList.remove("open");
+      scrim.hidden = false;
+      drawer.hidden = false;
+      document.body.style.overflow = "hidden";
+      document.getElementById("rd-email").focus();
+    }
+    function closeReserve() {
+      scrim.hidden = true;
+      drawer.hidden = true;
+      if (overlay.hidden) document.body.style.overflow = "";
+    }
+    document.getElementById("rd-close").addEventListener("click", closeReserve);
+    scrim.addEventListener("click", closeReserve);
+
+    function reserveRequest() {
+      const p = reserveProduct;
+      const email = document.getElementById("rd-email").value.trim();
+      const terms = document.getElementById("rd-terms").checked;
+      const err = document.getElementById("rd-error");
+      if (!p) return;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "Enter a valid email so we can reply."; return; }
+      if (!terms) { err.textContent = "Please accept the sourced-to-order terms."; return; }
+      err.textContent = "";
+      const subject = "Reserve: " + p.name + " (№ " + p.index + ")";
+      const body = ["TAPEOUT RESERVE REQUEST", "", "Unit: " + p.name + " (№ " + p.index + ")", "Price: " + money(p.price) + ", free insured shipping", "My email: " + email, "", "I understand this unit is sourced to order after I reserve.", "If TAPEOUT cannot secure it within 7 days, I get a full refund.", "", "Name (optional):", "Shipping address (optional):"].join("\n");
+      document.getElementById("rd-gmail").href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(STORE_EMAIL) + "&su=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      document.getElementById("rd-mailto").href = "mailto:" + STORE_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      document.getElementById("rd-copy").onclick = async () => {
+        const text = subject + "\n\n" + body;
+        const statusEl = document.getElementById("rd-copy-status");
+        let ok = false;
+        try { await navigator.clipboard.writeText(text); ok = true; }
+        catch (e) {
+          const ta = document.createElement("textarea");
+          ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+          document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); ta.remove();
+        }
+        statusEl.textContent = ok ? "Copied" : "Copy failed";
+        setTimeout(() => { statusEl.textContent = ""; }, 1800);
+      };
+      document.getElementById("rd-mailways").classList.add("open");
+    }
+    document.getElementById("rd-submit").addEventListener("click", reserveRequest);
+
+    document.addEventListener("click", (e) => {
+      const openBtn = e.target.closest("[data-open]");
+      if (openBtn) { openProduct(openBtn.getAttribute("data-open")); return; }
+      const reserveBtn = e.target.closest("[data-reserve]");
+      if (reserveBtn) { openReserve(reserveBtn.getAttribute("data-reserve")); }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && e.target.matches && e.target.matches("[data-open]")) openProduct(e.target.getAttribute("data-open"));
+      if (e.key === "Escape") { if (!drawer.hidden) closeReserve(); else if (!overlay.hidden) closeProduct(); }
+    });
+    window.addEventListener("hashchange", () => {
+      const m = location.hash.match(/^#\/offer\/([\w-]+)/);
+      if (m) openProduct(m[1], false);
+      else if (!overlay.hidden) closeProduct(false);
+    });
+    (function initHash() {
+      const m = location.hash.match(/^#\/offer\/([\w-]+)/);
+      if (m) openProduct(m[1], false);
+    })();
+    /* ============ /STORE v1 ============ */
+  </script>
+
+<script>
     const form = document.getElementById('quote-form');
     const status = document.getElementById('form-status');
     const gmailQuoteButton = form.querySelector('[data-gmail-quote]');

@@ -22,7 +22,7 @@
       if (scheme) scheme.setAttribute('content', t === 'classic' ? 'dark' : 'light');
     })();
   </script>
-  <meta name="build-version" content="v20260923-tapeout-1715">
+  <meta name="build-version" content="v20260923-tapeout-1730">
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ece6d5'/%3E%3Crect x='19' y='19' width='26' height='26' fill='none' stroke='%23241f17' stroke-width='2'/%3E%3Crect x='26' y='26' width='12' height='12' fill='none' stroke='%23241f17' stroke-width='1'/%3E%3Crect x='21' y='13' width='2' height='7' fill='%238c3f22'/%3E%3Crect x='27' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='21' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='27' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='13' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='39' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='39' width='7' height='2' fill='%23241f17'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -823,10 +823,11 @@
 .pc-units { color: var(--muted); padding: 5px 0; }
 .pc-body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .pc-index { font: 500 11px/1.2 "IBM Plex Mono", monospace; letter-spacing: .1em; color: var(--signal); }
+.pc-family { grid-column: 1 / -1; font: 600 12px/1 "IBM Plex Mono", monospace; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); border-top: 1px solid var(--ink); padding-top: 14px; }
 .pc-body h3 { font-family: "Barlow Condensed", sans-serif; font-size: 34px; font-weight: 600; line-height: 1.0; margin: 2px 0 0; letter-spacing: -.005em; text-transform: uppercase; }
-.pc-specs { font: 400 12.5px/1.6 "IBM Plex Mono", monospace; color: var(--muted); margin: 0; }
+.pc-specs { font: 400 12.5px/1.6 "IBM Plex Mono", monospace; color: var(--muted); margin: 0; font-variant-numeric: tabular-nums; }
 .pc-row { display: flex; align-items: baseline; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
-.pc-price { font: 500 32px/1 "IBM Plex Mono", monospace; letter-spacing: -.01em; }
+.pc-price { font: 500 32px/1 "IBM Plex Mono", monospace; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
 .pc-ship { font: 400 11px/1.4 "IBM Plex Mono", monospace; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
 .pc-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
 .pc-reserve {
@@ -1347,7 +1348,7 @@
     /* ============ STORE v1 ============ */
     const PRODUCTS = [
       {
-        id: "rtx-2060s-evga-sc-black", index: "001",
+        id: "rtx-2060s-evga-sc-black", family: "20-series", index: "001",
         name: "EVGA GeForce RTX 2060 Super SC Black", price: 179,
         img: "store/img/rtx2060s-evga.jpg",
         alt: "EVGA GeForce RTX 2060 Super SC Black graphics card, dual fan",
@@ -1356,7 +1357,7 @@
         specs: [["Chip", "TU106"], ["CUDA cores", "2,176"], ["Memory", "8GB GDDR6"], ["Boost clock", "1,650 MHz"], ["Power", "175W, 1x 8-pin"], ["Outputs", "3x DisplayPort, 1x HDMI"]],
       },
       {
-        id: "rtx-2070s-msi-ventus-oc", index: "002",
+        id: "rtx-2070s-msi-ventus-oc", family: "20-series", index: "002",
         name: "MSI GeForce RTX 2070 Super Ventus OC", price: 209,
         img: "store/img/rtx2070s-msi.jpg",
         alt: "MSI GeForce RTX 2070 Super Ventus OC graphics card, dual fan",
@@ -1365,7 +1366,7 @@
         specs: [["Chip", "TU104"], ["CUDA cores", "2,560"], ["Memory", "8GB GDDR6"], ["Boost clock", "1,770 MHz"], ["Power", "215W, 1x 8-pin + 1x 6-pin"], ["Outputs", "3x DisplayPort, 1x HDMI"]],
       },
       {
-        id: "rtx-2080s-gigabyte-gaming-oc", index: "003",
+        id: "rtx-2080s-gigabyte-gaming-oc", family: "20-series", index: "003",
         name: "Gigabyte GeForce RTX 2080 Super Gaming OC", price: 249,
         img: "store/img/rtx2080s-gigabyte.jpg",
         alt: "Gigabyte GeForce RTX 2080 Super Gaming OC graphics card, triple fan",
@@ -1374,16 +1375,7 @@
         specs: [["Chip", "TU104"], ["CUDA cores", "3,072"], ["Memory", "8GB GDDR6"], ["Boost clock", "1,845 MHz"], ["Power", "250W, 1x 8-pin + 1x 6-pin"], ["Outputs", "3x DisplayPort, 1x HDMI, 1x USB-C"]],
       },
       {
-        id: "rtx-3060ti-gigabyte-eagle-oc", index: "004",
-        name: "Gigabyte GeForce RTX 3060 Ti Eagle OC", price: 289,
-        img: "store/img/rtx3060ti-gigabyte.png",
-        alt: "Gigabyte GeForce RTX 3060 Ti Eagle OC graphics card, dual fan",
-        blurb: "Strong 1440p on efficient Ampere. The rational mid-range pick.",
-        specLine: "8GB GDDR6 / 4,864 CUDA / 200W",
-        specs: [["Chip", "GA104"], ["CUDA cores", "4,864"], ["Memory", "8GB GDDR6"], ["Boost clock", "1,695 MHz"], ["Power", "200W, 1x 8-pin"], ["Outputs", "2x DisplayPort, 2x HDMI"]],
-      },
-      {
-        id: "rtx-2080ti-evga-ftw3-ultra-hybrid", index: "005",
+        id: "rtx-2080ti-evga-ftw3-ultra-hybrid", family: "20-series", index: "005",
         name: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid", price: 299,
         img: "store/img/rtx2080ti-evga-hybrid.jpg",
         alt: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid graphics card with liquid cooling radiator and retail box",
@@ -1392,7 +1384,16 @@
         specs: [["Chip", "TU102"], ["CUDA cores", "4,352"], ["Memory", "11GB GDDR6"], ["Boost clock", "1,755 MHz"], ["Power", "250W, 2x 8-pin"], ["Outputs", "3x DisplayPort, 1x HDMI, 1x USB-C"]],
       },
       {
-        id: "rtx-3070ti-msi-ventus-3x-oc", index: "006",
+        id: "rtx-3060ti-gigabyte-eagle-oc", family: "30-series", index: "004",
+        name: "Gigabyte GeForce RTX 3060 Ti Eagle OC", price: 289,
+        img: "store/img/rtx3060ti-gigabyte.png",
+        alt: "Gigabyte GeForce RTX 3060 Ti Eagle OC graphics card, dual fan",
+        blurb: "Strong 1440p on efficient Ampere. The rational mid-range pick.",
+        specLine: "8GB GDDR6 / 4,864 CUDA / 200W",
+        specs: [["Chip", "GA104"], ["CUDA cores", "4,864"], ["Memory", "8GB GDDR6"], ["Boost clock", "1,695 MHz"], ["Power", "200W, 1x 8-pin"], ["Outputs", "2x DisplayPort, 2x HDMI"]],
+      },
+      {
+        id: "rtx-3070ti-msi-ventus-3x-oc", family: "30-series", index: "006",
         name: "MSI GeForce RTX 3070 Ti Ventus 3X OC", price: 339,
         img: "store/img/rtx3070ti-msi.jpg",
         alt: "MSI GeForce RTX 3070 Ti Ventus 3X OC graphics card, triple fan",
@@ -1423,7 +1424,17 @@
         "</div>";
       return el;
     }
-    PRODUCTS.forEach((p) => grid.appendChild(productCard(p)));
+    let lastFamily = "";
+    PRODUCTS.forEach((p) => {
+      if (p.family !== lastFamily) {
+        lastFamily = p.family;
+        const h = document.createElement("div");
+        h.className = "pc-family";
+        h.textContent = p.family === "20-series" ? "20-series / Turing" : "30-series / Ampere";
+        grid.appendChild(h);
+      }
+      grid.appendChild(productCard(p));
+    });
 
     const overlay = document.getElementById("product-overlay");
     function openProduct(id, push) {

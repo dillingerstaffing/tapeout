@@ -22,7 +22,7 @@
       if (scheme) scheme.setAttribute('content', t === 'classic' ? 'dark' : 'light');
     })();
   </script>
-  <meta name="build-version" content="v20260923-tapeout-1830">
+  <meta name="build-version" content="v20260923-tapeout-1845">
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ece6d5'/%3E%3Crect x='19' y='19' width='26' height='26' fill='none' stroke='%23241f17' stroke-width='2'/%3E%3Crect x='26' y='26' width='12' height='12' fill='none' stroke='%23241f17' stroke-width='1'/%3E%3Crect x='21' y='13' width='2' height='7' fill='%238c3f22'/%3E%3Crect x='27' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='21' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='27' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='13' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='39' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='39' width='7' height='2' fill='%23241f17'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -794,7 +794,7 @@
 .product-card.sold .pc-detail { margin-top: 6px; }
 /* Dossier sold state */
 .ps-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0 4px; }
-.ps-photos img { display: block; width: 100%; height: 190px; object-fit: cover; border: 1px solid var(--line); }
+.ps-photos img { display: block; width: 100%; height: 230px; object-fit: cover; object-position: center; border: 1px solid var(--line); }
 .ps-photos img:only-child { grid-column: 1 / -1; }
 .ps-sold { border: 1px solid var(--line); padding: 18px 20px; margin: 20px 0 0; }
 .ps-sold strong { display: block; font: 600 14px/1.4 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
@@ -822,10 +822,17 @@
 .pc-photo {
   display: block;
   width: calc(100% + 40px);
-  height: 230px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  object-position: center;
   margin: 0 -20px;
+  background: var(--panel);
 }
+/* v1845: one hero card per shelf view. The photo leads; the name gets room. */
+.product-card.feature { grid-column: span 2; }
+.product-card.feature .pc-photo { aspect-ratio: 16 / 9; }
+.product-card.feature .pc-body h3 { font-size: 44px; }
+@media (max-width: 620px) { .product-card.feature .pc-body h3 { font-size: 36px; } }
 .pc-photo-note {
   margin: 10px 0 -6px;
   font: 400 10.5px/1.5 "IBM Plex Mono", monospace;
@@ -845,7 +852,10 @@
 .pc-units { color: var(--muted); padding: 5px 0; }
 .pc-body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .pc-index { font: 500 11px/1.2 "IBM Plex Mono", monospace; letter-spacing: .1em; color: var(--signal); }
-.pc-family { grid-column: 1 / -1; font: 600 12px/1 "IBM Plex Mono", monospace; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); border-top: 1px solid var(--ink); padding-top: 14px; }
+.pc-family { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 8px 18px; flex-wrap: wrap; border-top: 1px solid var(--ink); padding-top: 14px; margin-top: 10px; }
+.pc-family-name { font: 600 12px/1.4 "IBM Plex Mono", monospace; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.pc-family-note { font: italic 400 14px/1.5 "Newsreader", Georgia, serif; color: var(--muted); }
+.pc-family-count { margin-left: auto; font: 500 11px/1.4 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .pc-body h3 { font-family: "Barlow Condensed", sans-serif; font-size: 34px; font-weight: 600; line-height: 1.0; margin: 2px 0 0; letter-spacing: -.005em; text-transform: uppercase; }
 .pc-specs { font: 400 12.5px/1.6 "IBM Plex Mono", monospace; color: var(--muted); margin: 0; font-variant-numeric: tabular-nums; }
 .pc-verdict { font: italic 400 14.5px/1.6 "Newsreader", Georgia, serif; color: var(--ink); margin: 2px 0 0; }
@@ -1054,7 +1064,7 @@
       font: 500 14px/1.2 "IBM Plex Mono", monospace;
     }
     [data-theme="notebook"] .disc-sort select { background: var(--paper); }
-    .disc-groups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+    .disc-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
     .disc-group { min-width: 0; }
     .disc-label { display: block; font: 500 10px/1.4 "IBM Plex Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
     .disc-pills { display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
@@ -1164,7 +1174,7 @@
         </div>
         <div class="offer-ledger" aria-label="Offer summary">
           <div><span>Active offers</span><strong>06</strong></div>
-          <div><span>Units per offer</span><strong>01</strong></div>
+          <div><span>Per offer</span><strong>1 card</strong></div>
           <div><span>Sourcing</span><strong>To order</strong></div>
           <div><span>Load test</span><strong>On request</strong></div>
         </div>
@@ -1463,6 +1473,28 @@
     /* ============ STORE v1 ============ */
     const PRODUCTS = [
       {
+        id: "rtx-3070ti-msi-ventus-3x-oc", family: "30-series", index: "006", feature: true,
+        name: "MSI GeForce RTX 3070 Ti Ventus 3X OC", status: "available",
+        vramGb: 8, useCase: ["1440p", "4k"],
+        img: "store/img/rtx3070ti-msi-ventus-3x.jpg",
+        alt: "MSI GeForce RTX 3070 Ti Ventus 3X OC graphics card, triple fan",
+        blurb: "GDDR6X bandwidth for 1440p ultra and entry 4K. Triple-fan Ventus cooling.",
+        verdict: "Fastest of the six, hungriest too. Only if you need the bandwidth.",
+        specLine: "8GB GDDR6X / 6,144 CUDA / 290W",
+        specs: [["Chip", "GA104"], ["CUDA cores", "6,144"], ["Memory", "8GB GDDR6X"], ["Boost clock", "1,830 MHz"], ["Power", "290W, 2x 8-pin"], ["Outputs", "3x DisplayPort, 1x HDMI"]],
+      },
+      {
+        id: "rtx-3060ti-gigabyte-eagle-oc", family: "30-series", index: "004",
+        name: "Gigabyte GeForce RTX 3060 Ti Eagle OC", status: "available",
+        vramGb: 8, useCase: ["1080p", "1440p"],
+        img: "store/img/rtx3060ti-gigabyte-eagle-oc.jpg",
+        alt: "Gigabyte GeForce RTX 3060 Ti Eagle OC graphics card, dual fan",
+        blurb: "Strong 1440p on efficient Ampere. The rational mid-range pick.",
+        verdict: "The sensible middle. Modern features, modest power, fair 1440p.",
+        specLine: "8GB GDDR6 / 4,864 CUDA / 200W",
+        specs: [["Chip", "GA104"], ["CUDA cores", "4,864"], ["Memory", "8GB GDDR6"], ["Boost clock", "1,695 MHz"], ["Power", "200W, 1x 8-pin"], ["Outputs", "2x DisplayPort, 2x HDMI"]],
+      },
+      {
         id: "rtx-2060s-evga-sc-black", family: "20-series", index: "001",
         name: "EVGA GeForce RTX 2060 Super SC Black", status: "available",
         vramGb: 8, useCase: ["1080p"],
@@ -1499,34 +1531,12 @@
         id: "rtx-2080ti-evga-ftw3-ultra-hybrid", family: "20-series", index: "005",
         name: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid", status: "available",
         vramGb: 11, useCase: ["1440p", "4k", "compute"],
-        img: "store/img/rtx2080ti-evga-ftw3-hybrid.jpg",
+        img: "store/img/rtx2080ti-evga-ftw3-hybrid.jpg", imgPos: "50% 16%",
         alt: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid graphics card with liquid cooling radiator",
         blurb: "11GB VRAM with liquid cooling. For heavy workloads that need memory and quiet.",
         verdict: "11GB of VRAM with quiet liquid cooling. Niche, and the pump is the aging part.",
         specLine: "11GB GDDR6 / 4,352 CUDA / liquid cooled",
         specs: [["Chip", "TU102"], ["CUDA cores", "4,352"], ["Memory", "11GB GDDR6"], ["Boost clock", "1,755 MHz"], ["Power", "250W, 2x 8-pin"], ["Outputs", "3x DisplayPort, 1x HDMI, 1x USB-C"]],
-      },
-      {
-        id: "rtx-3060ti-gigabyte-eagle-oc", family: "30-series", index: "004",
-        name: "Gigabyte GeForce RTX 3060 Ti Eagle OC", status: "available",
-        vramGb: 8, useCase: ["1080p", "1440p"],
-        img: "store/img/rtx3060ti-gigabyte-eagle-oc.jpg",
-        alt: "Gigabyte GeForce RTX 3060 Ti Eagle OC graphics card, dual fan",
-        blurb: "Strong 1440p on efficient Ampere. The rational mid-range pick.",
-        verdict: "The sensible middle. Modern features, modest power, fair 1440p.",
-        specLine: "8GB GDDR6 / 4,864 CUDA / 200W",
-        specs: [["Chip", "GA104"], ["CUDA cores", "4,864"], ["Memory", "8GB GDDR6"], ["Boost clock", "1,695 MHz"], ["Power", "200W, 1x 8-pin"], ["Outputs", "2x DisplayPort, 2x HDMI"]],
-      },
-      {
-        id: "rtx-3070ti-msi-ventus-3x-oc", family: "30-series", index: "006",
-        name: "MSI GeForce RTX 3070 Ti Ventus 3X OC", status: "available",
-        vramGb: 8, useCase: ["1440p", "4k"],
-        img: "store/img/rtx3070ti-msi-ventus-3x.jpg",
-        alt: "MSI GeForce RTX 3070 Ti Ventus 3X OC graphics card, triple fan",
-        blurb: "GDDR6X bandwidth for 1440p ultra and entry 4K. Triple-fan Ventus cooling.",
-        verdict: "Fastest of the six, hungriest too. Only if you need the bandwidth.",
-        specLine: "8GB GDDR6X / 6,144 CUDA / 290W",
-        specs: [["Chip", "GA104"], ["CUDA cores", "6,144"], ["Memory", "8GB GDDR6X"], ["Boost clock", "1,830 MHz"], ["Power", "290W, 2x 8-pin"], ["Outputs", "3x DisplayPort, 1x HDMI"]],
       },
       {
         id: "gtx1060-evga-sc", family: "10-series", index: "007",
@@ -1545,9 +1555,9 @@
     const STORE_EMAIL = "shipthisgroup@gmail.com";
 
     const grid = document.getElementById("store-grid");
-    function productCard(p) {
+    function productCard(p, isFeature) {
       const el = document.createElement("article");
-      el.className = "product-card" + (p.status === "sold" ? " sold" : "");
+      el.className = "product-card" + (p.status === "sold" ? " sold" : "") + (isFeature ? " feature" : "");
       if (p.status === "sold") {
         el.innerHTML =
           '<div class="pc-media" data-open="' + p.id + '" role="button" tabindex="0" aria-label="View ' + p.name + ' details">' +
@@ -1567,8 +1577,8 @@
       el.innerHTML =
         '<div class="pc-media" data-open="' + p.id + '" role="button" tabindex="0" aria-label="View ' + p.name + ' details">' +
           '<div class="pc-media-top"><span class="pc-badge">Limited offer</span></div>' +
-          '<img class="pc-photo" src="' + p.img + '" alt="' + p.alt + '" loading="lazy" decoding="async">' +
-          '<p class="pc-photo-note">Exact photos on request</p>' +
+          '<img class="pc-photo" src="' + p.img + '" alt="' + p.alt + '" loading="lazy" decoding="async"' + (p.imgPos ? ' style="object-position:' + p.imgPos + '"' : "") + '>' +
+          '<p class="pc-photo-note">Exact unit photos on request</p>' +
         "</div>" +
         '<div class="pc-body">' +
           '<span class="pc-index">№ ' + p.index + "</span>" +
@@ -1593,7 +1603,12 @@
        exactly as before (family-grouped); any engaged control re-renders the
        grid flat from the filtered list. */
     const DISCOVERY = { q: "", series: "all", vram: "all", use: "all", sort: "featured" };
-    const FAMILY_ORDER = ["20-series", "30-series", "10-series"];
+    const FAMILY_ORDER = ["30-series", "20-series", "10-series"];
+    const FAMILY_NOTE = {
+      "30-series": "Ampere. The efficient middle and the fastest card on the shelf.",
+      "20-series": "Turing. Last generation flagships, still strong at 1440p and below.",
+      "10-series": "Pascal. One card, sold in 2026, kept as a record."
+    };
     const FAMILY_LABEL = { "20-series": "20-series / Turing", "30-series": "30-series / Ampere", "10-series": "10-series / Pascal" };
     const USE_ORDER = ["1080p", "1440p", "4k", "compute"];
     const USE_LABEL = { "1080p": "1080p", "1440p": "1440p", "4k": "4K", "compute": "Compute" };
@@ -1603,7 +1618,8 @@
       ["vram-desc", "VRAM: most first"],
     ];
     function haystack(p) {
-      return [p.name, p.specLine, p.blurb, p.family, (p.useCase || []).join(" "), p.status,
+      return [p.name, p.specLine, p.blurb, p.verdict, p.family, FAMILY_LABEL[p.family] || "",
+        (p.useCase || []).join(" "), p.status,
         p.specs.map((s) => s[1]).join(" ")].join(" ").toLowerCase();
     }
     function discoveryEngaged() {
@@ -1764,16 +1780,28 @@
       } else {
         /* Featured order keeps the shelf family headers, filtered or not:
            filtering narrows the shelves instead of replacing the layout. */
+        const shelfView = !engaged && DISCOVERY.sort === "featured";
+        const famCount = {};
+        list.forEach((p) => { famCount[p.family] = (famCount[p.family] || 0) + 1; });
         let lastFamily = "";
         list.forEach((p) => {
           if (p.family !== lastFamily) {
             lastFamily = p.family;
-            const h = document.createElement("div");
-            h.className = "pc-family";
-            h.textContent = FAMILY_LABEL[p.family] || p.family;
-            grid.appendChild(h);
+            const hd = document.createElement("div");
+            hd.className = "pc-family";
+            const nm = document.createElement("span");
+            nm.className = "pc-family-name";
+            nm.textContent = FAMILY_LABEL[p.family] || p.family;
+            const nt = document.createElement("span");
+            nt.className = "pc-family-note";
+            nt.textContent = FAMILY_NOTE[p.family] || "";
+            const ct = document.createElement("span");
+            ct.className = "pc-family-count";
+            ct.textContent = famCount[p.family] + (famCount[p.family] === 1 ? " card" : " cards");
+            hd.append(nm, nt, ct);
+            grid.appendChild(hd);
           }
-          grid.appendChild(productCard(p));
+          grid.appendChild(productCard(p, shelfView && p.feature === true));
         });
       }
       renderChips();
@@ -1962,7 +1990,7 @@
         reserveBtn.hidden = false;
         soldBox.hidden = true;
         photosBox.hidden = false;
-        photosBox.innerHTML = '<img src="' + p.img + '" alt="' + p.alt + '" loading="lazy" decoding="async">';
+        photosBox.innerHTML = '<img src="' + p.img + '" alt="' + p.alt + '" loading="lazy" decoding="async"' + (p.imgPos ? ' style="object-position:' + p.imgPos + '"' : "") + '>';
         document.getElementById("ps-terms").innerHTML = "<strong>Used card, condition confirmed on request.</strong> Price confirmed on request. Final price, exact condition, and shipping cost are confirmed after you request, before anything is agreed. Optional burn-in test available on request.";
         reserveBtn.onclick = (e) => { lastReserveTrigger = e.currentTarget; closeProduct(false); openReserve(p.id); };
       }

@@ -22,7 +22,7 @@
       if (scheme) scheme.setAttribute('content', t === 'classic' ? 'dark' : 'light');
     })();
   </script>
-  <meta name="build-version" content="v20260923-tapeout-1615">
+  <meta name="build-version" content="v20260923-tapeout-1630">
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ece6d5'/%3E%3Crect x='19' y='19' width='26' height='26' fill='none' stroke='%23241f17' stroke-width='2'/%3E%3Crect x='26' y='26' width='12' height='12' fill='none' stroke='%23241f17' stroke-width='1'/%3E%3Crect x='21' y='13' width='2' height='7' fill='%238c3f22'/%3E%3Crect x='27' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='21' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='27' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='13' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='39' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='39' width='7' height='2' fill='%23241f17'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -786,8 +786,8 @@
 }
 .product-card:hover { border-color: var(--ink); }
 .pc-media img {
-  width: 86%;
-  height: 86%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   display: block;
 }
@@ -821,15 +821,15 @@
 .pc-row { display: flex; align-items: baseline; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
 .pc-price { font: 500 24px/1 "IBM Plex Mono", monospace; }
 .pc-ship { font: 400 11px/1.4 "IBM Plex Mono", monospace; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
-.pc-actions { display: flex; gap: 10px; margin-top: 4px; }
+.pc-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
 .pc-reserve {
-  flex: 1;
+  width: 100%;
   background: var(--ink);
   color: var(--paper);
   border: 1px solid var(--ink);
-  padding: 13px 16px;
-  font: 600 13px/1.2 "IBM Plex Mono", monospace;
-  letter-spacing: .08em;
+  padding: 16px;
+  font: 600 14px/1.2 "IBM Plex Mono", monospace;
+  letter-spacing: .1em;
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -837,13 +837,15 @@
 .pc-detail {
   background: transparent;
   color: var(--muted);
-  border: 1px solid var(--line);
-  padding: 13px 16px;
-  font: 500 13px/1.2 "IBM Plex Mono", monospace;
+  border: 0;
+  padding: 4px;
+  font: 500 12px/1.2 "IBM Plex Mono", monospace;
   letter-spacing: .06em;
+  text-transform: uppercase;
   cursor: pointer;
+  text-align: center;
 }
-.pc-detail:hover { color: var(--ink); border-color: var(--ink); }
+.pc-detail:hover { color: var(--ink); text-decoration: underline; }
 .store-note { margin-top: 26px; font: 400 13px/1.7 "IBM Plex Mono", monospace; color: var(--muted); max-width: 72ch; }
 .store-note strong { color: var(--ink); font-weight: 500; }
 
@@ -884,7 +886,7 @@
 .ps-body h2 { font-family: "Barlow Condensed", sans-serif; font-size: 40px; font-weight: 600; line-height: 1; margin: 10px 0 6px; }
 .ps-blurb { color: var(--muted); font-size: 15px; line-height: 1.65; margin: 0 0 18px; }
 .ps-price-row { display: flex; align-items: baseline; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.ps-price { font: 500 34px/1 "IBM Plex Mono", monospace; }
+.ps-price { font: 500 44px/1 "IBM Plex Mono", monospace; }
 .ps-price-note { font: 400 11.5px/1.5 "IBM Plex Mono", monospace; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
 .spec-table { width: 100%; border-collapse: collapse; margin: 18px 0; }
 .spec-table th, .spec-table td { text-align: left; padding: 9px 0; border-bottom: 1px solid var(--line); font: 400 13px/1.5 "IBM Plex Mono", monospace; vertical-align: top; }
@@ -893,7 +895,7 @@
 .ps-terms strong { color: var(--ink); font-weight: 600; }
 .ps-reserve {
   width: 100%; background: var(--ink); color: var(--paper); border: 1px solid var(--ink);
-  padding: 16px; font: 600 14px/1.2 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+  padding: 22px; font: 600 16px/1.2 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; cursor: pointer;
 }
 .ps-reserve:hover { background: var(--acid); border-color: var(--acid); }
 

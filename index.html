@@ -22,7 +22,7 @@
       if (scheme) scheme.setAttribute('content', t === 'classic' ? 'dark' : 'light');
     })();
   </script>
-  <meta name="build-version" content="v20260923-tapeout-1846">
+  <meta name="build-version" content="v20260923-tapeout-1900">
   <meta name="robots" content="max-image-preview:large">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ece6d5'/%3E%3Crect x='19' y='19' width='26' height='26' fill='none' stroke='%23241f17' stroke-width='2'/%3E%3Crect x='26' y='26' width='12' height='12' fill='none' stroke='%23241f17' stroke-width='1'/%3E%3Crect x='21' y='13' width='2' height='7' fill='%238c3f22'/%3E%3Crect x='27' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='13' width='2' height='7' fill='%23241f17'/%3E%3Crect x='21' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='27' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='33' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='39' y='44' width='2' height='7' fill='%23241f17'/%3E%3Crect x='13' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='13' y='39' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='21' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='27' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='33' width='7' height='2' fill='%23241f17'/%3E%3Crect x='44' y='39' width='7' height='2' fill='%23241f17'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -151,10 +151,10 @@
         },
         {
           "@type": "Question",
-          "name": "Why aren't exact prices listed on the site?",
+          "name": "Why do limited offers show prices but services do not?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Every price is confirmed on request, after availability, exact condition, and shipping are confirmed. Nothing is priced from a stale list."
+            "text": "Limited offers are single opportunities, so each carries a target price; the final price is confirmed after you request. Custom sourcing and services are quote based: every quote is built from current sourcing for your exact list."
           }
         },
         {
@@ -780,7 +780,7 @@
 }
 /* Sold card: real photo, blunt ribbon, no price, no request CTA. */
 .product-card.sold .pc-media { padding: 0; overflow: hidden; }
-.product-card.sold .pc-media img { display: block; width: 100%; height: 230px; object-fit: cover; filter: saturate(.8); }
+.product-card.sold .pc-media img { display: block; width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; filter: saturate(.8); }
 .pc-sold-ribbon {
   position: absolute; top: 14px; left: 0;
   background: var(--ink); color: var(--paper);
@@ -794,13 +794,13 @@
 .product-card.sold .pc-detail { margin-top: 6px; }
 /* Dossier sold state */
 .ps-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0 4px; }
-.ps-photos img { display: block; width: 100%; height: 230px; object-fit: cover; object-position: center; border: 1px solid var(--line); }
+.ps-photos img { display: block; width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; object-position: center; border: 1px solid var(--line); }
 .ps-photos img:only-child { grid-column: 1 / -1; }
 .ps-sold { border: 1px solid var(--line); padding: 18px 20px; margin: 20px 0 0; }
 .ps-sold strong { display: block; font: 600 14px/1.4 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
 .ps-sold p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
 .ps-sold a { color: var(--ink); }
-@media (max-width: 620px) { .ps-photos { grid-template-columns: 1fr; } .ps-photos img { height: 210px; } }
+@media (max-width: 620px) { .ps-photos { grid-template-columns: 1fr; } }
 .pc-media-top {
   display: flex;
   align-items: center;
@@ -853,7 +853,7 @@
 .pc-body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .pc-index { font: 500 11px/1.2 "IBM Plex Mono", monospace; letter-spacing: .1em; color: var(--signal); }
 .pc-family { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 8px 18px; flex-wrap: wrap; border-top: 1px solid var(--ink); padding-top: 14px; margin-top: 10px; }
-.pc-family-name { font: 600 12px/1.4 "IBM Plex Mono", monospace; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.pc-family-name { font: 600 12px/1.4 "IBM Plex Mono", monospace; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 .pc-family-note { font: italic 400 14px/1.5 "Newsreader", Georgia, serif; color: var(--muted); }
 .pc-family-count { margin-left: auto; font: 500 11px/1.4 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .pc-body h3 { font-family: "Barlow Condensed", sans-serif; font-size: 34px; font-weight: 600; line-height: 1.0; margin: 2px 0 0; letter-spacing: -.005em; text-transform: uppercase; }
@@ -861,13 +861,12 @@
 .pc-verdict { font: italic 400 14.5px/1.6 "Newsreader", Georgia, serif; color: var(--ink); margin: 2px 0 0; }
 .pc-avail { font: 500 10.5px/1.5 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--signal); margin: 0; padding-top: 10px; }
 .pc-trust { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); margin-top: 12px; }
-.pc-trust div { padding: 10px 9px; min-width: 0; }
+.pc-trust div { padding: 10px 7px; min-width: 0; }
 .pc-trust div + div { border-left: 1px solid var(--line); }
-.pc-trust span { display: block; font: 400 9px/1.4 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.pc-trust span { display: block; font: 400 9px/1.4 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .pc-trust strong { display: block; font: 500 11.5px/1.35 "IBM Plex Mono", monospace; font-weight: 500; font-variant-numeric: tabular-nums; }
 .pc-row { display: flex; align-items: baseline; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
 .pc-price { font: 500 32px/1 "IBM Plex Mono", monospace; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
-.pc-price-na { font: 500 14px/1.5 "IBM Plex Mono", monospace; color: var(--muted); }
 .pc-ship { font: 400 11px/1.4 "IBM Plex Mono", monospace; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
 .pc-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
 .pc-reserve {
@@ -1008,6 +1007,8 @@
   .pc-trust div:nth-child(n+3) { border-top: 1px solid var(--line); }
   #store { padding: 64px 0 16px; }
   .store-grid { grid-template-columns: 1fr; }
+  .product-card.feature { grid-column: span 1; }
+  .product-card.feature .pc-photo { aspect-ratio: 4 / 3; }
   .reserve-drawer { top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 92vh; border-left: 0; border-top: 1px solid var(--line); }
   .ps-body h2 { font-size: 32px; }
   /* Every tappable text link meets the 44px mobile target. */
@@ -1170,7 +1171,7 @@
       <div class="shell">
         <div class="section-head">
           <span class="section-no">01 / LIMITED OFFERS</span>
-          <div><h2 id="store-title">Request the card you want.</h2><p class="section-intro">Each listing is one card, request based. Send a request and we confirm availability, exact condition, final price, and shipping before anything is agreed.</p></div>
+          <div><h2 id="store-title">One unit each. Request the card you want.</h2><p class="section-intro">Every listing is a single card at a target price. Send a request and we confirm availability and final price before anything is agreed.</p></div>
         </div>
         <div class="offer-ledger" aria-label="Offer summary">
           <div><span>Active offers</span><strong>06</strong></div>
@@ -1349,8 +1350,8 @@
           <p>You describe your workload, target hardware, quantity, and timeline; we reply with a sourced quote. Burn-in testing is optional and quoted separately.</p>
         </div>
         <div class="quote-faq" role="group" aria-labelledby="pricing-faq-question">
-          <h3 id="pricing-faq-question">Do limited offers have a fixed price?</h3>
-          <p>No. Each offer is request based: we confirm availability, exact condition, final price, and shipping cost after you request, and nothing is agreed until you confirm back. Custom sourcing and services are quote based the same way.</p>
+          <h3 id="pricing-faq-question">Why do limited offers show prices?</h3>
+          <p>Each limited offer is a single opportunity, so it carries a target price. Final price, exact condition, and shipping are confirmed after you request, and nothing is agreed until you confirm back. Custom sourcing and services are quote based.</p>
         </div>
         <div class="quote-faq" role="group" aria-labelledby="included-faq-question">
           <h3 id="included-faq-question">What does the quote include?</h3>
@@ -1414,7 +1415,7 @@
           <h2 id="ps-name"></h2>
           <p class="ps-blurb" id="ps-blurb"></p>
           <div class="ps-photos" id="ps-photos" hidden></div>
-          <div class="ps-price-row"><span class="ps-price-note">Price confirmed on request<br>Shipping quoted separately</span></div>
+          <div class="ps-price-row"><span class="ps-price" id="ps-price"></span><span class="ps-price-note">Target price<br>Shipping quoted</span></div>
           <table class="spec-table" id="ps-specs"></table>
           <p class="ps-terms" id="ps-terms"></p>
           <div class="ps-sold" id="ps-sold" hidden>
@@ -1474,7 +1475,7 @@
     const PRODUCTS = [
       {
         id: "rtx-3070ti-msi-ventus-3x-oc", family: "30-series", index: "006", feature: true,
-        name: "MSI GeForce RTX 3070 Ti Ventus 3X OC", status: "available",
+        name: "MSI GeForce RTX 3070 Ti Ventus 3X OC", status: "available", price: 339,
         vramGb: 8, useCase: ["1440p", "4k"],
         img: "store/img/rtx3070ti-msi-ventus-3x.jpg",
         alt: "MSI GeForce RTX 3070 Ti Ventus 3X OC graphics card, triple fan",
@@ -1485,7 +1486,7 @@
       },
       {
         id: "rtx-3060ti-gigabyte-eagle-oc", family: "30-series", index: "004",
-        name: "Gigabyte GeForce RTX 3060 Ti Eagle OC", status: "available",
+        name: "Gigabyte GeForce RTX 3060 Ti Eagle OC", status: "available", price: 289,
         vramGb: 8, useCase: ["1080p", "1440p"],
         img: "store/img/rtx3060ti-gigabyte-eagle-oc.jpg",
         alt: "Gigabyte GeForce RTX 3060 Ti Eagle OC graphics card, dual fan",
@@ -1496,7 +1497,7 @@
       },
       {
         id: "rtx-2060s-evga-sc-black", family: "20-series", index: "001",
-        name: "EVGA GeForce RTX 2060 Super SC Black", status: "available",
+        name: "EVGA GeForce RTX 2060 Super SC Black", status: "available", price: 179,
         vramGb: 8, useCase: ["1080p"],
         img: "store/img/rtx2060s-evga-scblack.jpg",
         alt: "EVGA GeForce RTX 2060 Super SC Black graphics card, dual fan",
@@ -1507,7 +1508,7 @@
       },
       {
         id: "rtx-2070s-msi-ventus-oc", family: "20-series", index: "002",
-        name: "MSI GeForce RTX 2070 Super Ventus OC", status: "available",
+        name: "MSI GeForce RTX 2070 Super Ventus OC", status: "available", price: 209,
         vramGb: 8, useCase: ["1080p", "1440p"],
         img: "store/img/rtx2070s-msi-ventus-oc.jpg",
         alt: "MSI GeForce RTX 2070 Super Ventus OC graphics card, dual fan",
@@ -1518,7 +1519,7 @@
       },
       {
         id: "rtx-2080s-gigabyte-gaming-oc", family: "20-series", index: "003",
-        name: "Gigabyte GeForce RTX 2080 Super Gaming OC", status: "available",
+        name: "Gigabyte GeForce RTX 2080 Super Gaming OC", status: "available", price: 249,
         vramGb: 8, useCase: ["1080p", "1440p"],
         img: "store/img/rtx2080s-gigabyte-gaming-oc.jpg",
         alt: "Gigabyte GeForce RTX 2080 Super Gaming OC graphics card, triple fan",
@@ -1529,7 +1530,7 @@
       },
       {
         id: "rtx-2080ti-evga-ftw3-ultra-hybrid", family: "20-series", index: "005",
-        name: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid", status: "available",
+        name: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid", status: "available", price: 299,
         vramGb: 11, useCase: ["1440p", "4k", "compute"],
         img: "store/img/rtx2080ti-evga-ftw3-hybrid.jpg", imgPos: "50% 16%",
         alt: "EVGA GeForce RTX 2080 Ti FTW3 Ultra Hybrid graphics card with liquid cooling radiator",
@@ -1553,6 +1554,7 @@
       },
     ];
     const STORE_EMAIL = "shipthisgroup@gmail.com";
+    const money = (n) => "$" + n;
 
     const grid = document.getElementById("store-grid");
     function productCard(p, isFeature) {
@@ -1585,11 +1587,11 @@
           "<h3>" + p.name + "</h3>" +
           '<p class="pc-specs">' + p.specLine + "</p>" +
           '<p class="pc-verdict">' + p.verdict + "</p>" +
-          '<div class="pc-row"><span class="pc-price-na">Price confirmed on request</span></div>' +
+          '<div class="pc-row"><span class="pc-price">' + money(p.price) + '</span><span class="pc-ship">Target price</span></div>' +
           '<p class="pc-avail">Request based</p>' +
           '<div class="pc-trust" aria-label="Offer facts">' +
-            '<div><span>Price</span><strong>On request</strong></div>' +
-            '<div><span>Availability</span><strong>Request based</strong></div>' +
+            '<div><span>Price</span><strong>' + money(p.price) + ' target</strong></div>' +
+            '<div><span>Status</span><strong>Request based</strong></div>' +
             '<div><span>Shipping</span><strong>Quoted</strong></div>' +
             '<div><span>Burn-in</span><strong>Optional</strong></div>' +
           "</div>" +
@@ -1987,11 +1989,12 @@
         document.getElementById("ps-terms").textContent = "This record stays up so you can see what moved.";
       } else {
         priceRow.hidden = false;
+        document.getElementById("ps-price").textContent = money(p.price);
         reserveBtn.hidden = false;
         soldBox.hidden = true;
         photosBox.hidden = false;
         photosBox.innerHTML = '<img src="' + p.img + '" alt="' + p.alt + '" loading="lazy" decoding="async"' + (p.imgPos ? ' style="object-position:' + p.imgPos + '"' : "") + '>';
-        document.getElementById("ps-terms").innerHTML = "<strong>Used card, condition confirmed on request.</strong> Price confirmed on request. Final price, exact condition, and shipping cost are confirmed after you request, before anything is agreed. Optional burn-in test available on request.";
+        document.getElementById("ps-terms").innerHTML = "<strong>Used card, condition confirmed on request.</strong> Target price shown. Final price, exact condition, and shipping cost are confirmed after you request, before anything is agreed. Optional burn-in test available on request.";
         reserveBtn.onclick = (e) => { lastReserveTrigger = e.currentTarget; closeProduct(false); openReserve(p.id); };
       }
       overlay.hidden = false;
@@ -2018,7 +2021,7 @@
       if (!p || p.status === "sold") return;
       reserveProduct = p;
       document.getElementById("rd-name").textContent = p.name;
-      document.getElementById("rd-price").textContent = "Price confirmed on request";
+      document.getElementById("rd-price").textContent = money(p.price) + " target price";
       document.getElementById("rd-error").textContent = "";
       document.getElementById("rd-mailways").classList.remove("open");
       scrim.hidden = false;
@@ -2047,7 +2050,7 @@
       if (!terms) { err.textContent = "Please accept the request terms."; return; }
       err.textContent = "";
       const subject = "Request: " + p.name + " (№ " + p.index + ")";
-      const body = ["TAPEOUT CARD REQUEST", "", "Card: " + p.name + " (№ " + p.index + ")", "Price: confirmed on request", "My email: " + email, "", "I understand this is a request only. Nothing is agreed or charged until TAPEOUT confirms availability, exact condition, final price, and shipping cost, and I confirm back.", "", "Name (optional):", "Shipping ZIP (optional):"].join("\n");
+      const body = ["TAPEOUT CARD REQUEST", "", "Card: " + p.name + " (№ " + p.index + ")", "Target price: " + money(p.price), "My email: " + email, "", "I understand this is a request only. Nothing is agreed or charged until TAPEOUT confirms availability, exact condition, final price, and shipping cost, and I confirm back.", "", "Name (optional):", "Shipping ZIP (optional):"].join("\n");
       document.getElementById("rd-gmail").href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(STORE_EMAIL) + "&su=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
       document.getElementById("rd-mailto").href = "mailto:" + STORE_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
       document.getElementById("rd-copy").onclick = async () => {

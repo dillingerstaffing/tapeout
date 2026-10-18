@@ -2,11 +2,11 @@
 
 > Lean GPU and compute-parts distribution. Quote-based sourcing, with burn-in testing available on request.
 
-TAPEOUT curates and distributes GPUs and compute parts for people building real machines. A "Limited offers" section lists one-unit cards at a target price: you request the card, we confirm availability, exact condition, final price, and shipping cost, and nothing is charged or agreed until you confirm. Custom sourcing is priced by quote. Burn-in testing is available on request and quoted separately. An open R&D lab documents real engineering work as it happens; no tapeout is claimed and no specification is fictional.
+TAPEOUT sources GPUs and compute parts to order for people building real machines. A "Limited offers" section lists one-unit cards at a target price: you request the card, we confirm availability, exact condition, final price, and shipping cost, and nothing is charged or agreed until you confirm. Custom sourcing is priced by quote. Burn-in testing is available on request and quoted separately. An open R&D lab documents real engineering work as it happens; no tapeout is claimed and no specification is fictional.
 
 ## What TAPEOUT offers
 
-- Curated sourcing of GPUs and compute parts: a "Limited offers" section with one-unit cards at target prices (request the card, we confirm, nothing charged or agreed until you confirm), plus priced-by-quote sourcing for custom builds
+- Sourced-to-order GPUs and compute parts: a "Limited offers" section with one-unit cards at target prices (request the card, we confirm, nothing charged or agreed until you confirm), plus priced-by-quote sourcing for custom builds
 - Burn-in testing available on request, quoted separately
 - Mail-in burn-in certification for sellers: mail your card in, get the full sustained-load burn-in plus a signed result report for your listing (flat per-card fee, quoted before you ship; seller pays shipping both ways)
 - Mail-in repaste plus pad replacement for owners: repaste the GPU die, replace worn pads, full sustained-load burn-in, signed before/after thermal report returned with the card (flat per-card fee, quoted before you ship; owner pays shipping both ways)
